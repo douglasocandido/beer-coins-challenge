@@ -8,7 +8,7 @@ import {
 } from 'react-bootstrap';
 import contentImage from '../assets/images/client.svg'
 
-interface TodoListProps {
+interface PresentationProps {
     name: string;
     lastName: string;
     balance: number;
@@ -46,7 +46,7 @@ const presentationImage: CSSProperties = {
     width: '290px'
 }
 
-const TodoList = ({ name, lastName, balance }: TodoListProps) => {
+const Presentation = ({ name, lastName, balance }: PresentationProps) => {
     return (
         <Jumbotron style={ presentationContainer }>
             <Row>
@@ -71,4 +71,4 @@ const TodoList = ({ name, lastName, balance }: TodoListProps) => {
     )
 };
 
-export default TodoList;
+export default Presentation;
