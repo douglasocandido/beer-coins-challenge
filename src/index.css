@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.btn-primary {
+  color: #fff;
+  background-color: rgb(55, 58, 60) !important;
+  border-color: rgb(55, 58, 60) !important;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgb(55, 58, 60) !important;
+}
+
+.dropdown-menu {
+  right: 0 !important;
+  left: auto !important;
+}
