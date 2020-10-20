@@ -1,5 +1,8 @@
 import React from 'react';
+import NavbarComponent from '../components/NavbarComponent'
 
 export default function Client() {
-  return <h2>Client route</h2>;
+  return (
+    <NavbarComponent name="Douglas"></NavbarComponent>
+  )
 }
