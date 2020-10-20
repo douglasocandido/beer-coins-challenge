@@ -26,14 +26,15 @@ const buttonStyle: CSSProperties = {
     borderColor: '#FF8832'
 }
 
-const presentationContainer: CSSProperties = {
+const presentationTitle: CSSProperties = {
     textAlign: 'center', 
     marginBottom: '25px'
 }
 
-const presentationTitle: CSSProperties = {
+const presentationContainer: CSSProperties = {
     backgroundColor: '#fff', 
-    marginBottom: '0px'
+    marginBottom: '0px',
+    padding: '2rem 2rem'
 }
 
 const textAlignCenter: CSSProperties = {
@@ -46,10 +47,10 @@ const presentationImage: CSSProperties = {
 
 const TodoList = ({ name, lastName, balance }: TodoListProps) => {
     return (
-        <Jumbotron style={ presentationTitle }>
+        <Jumbotron style={ presentationContainer }>
             <Row>
                 <Col>
-                    <h1 style={ presentationContainer }>Olá {name} {lastName}!</h1>
+                    <h1 style={ presentationTitle }>Olá, {name} {lastName}!</h1>
                     <Row>
                         <Col style={ textAlignCenter }>
                             <p>Saldo em conta:</p>
