@@ -6,6 +6,7 @@ import {
     Col,
     Image
 } from 'react-bootstrap';
+import contentImage from '../assets/images/client.svg'
 
 interface TodoListProps {
     name: string;
@@ -63,7 +64,7 @@ const TodoList = ({ name, lastName, balance }: TodoListProps) => {
                     </Row>
                 </Col>
                 <Col style={ textAlignCenter }>
-                    <Image style={ presentationImage } src="/assets/images/client.svg" />
+                    <Image style={ presentationImage } src={contentImage} />
                 </Col>
             </Row>
         </Jumbotron>
