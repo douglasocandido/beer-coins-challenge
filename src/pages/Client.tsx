@@ -1,5 +1,6 @@
 import React from 'react';
+import Presentation from '../components/Presentation'
 
 export default function Client() {
-  return <h2>Client route</h2>;
+  return <Presentation name="Douglas" lastName="Candido" balance={9999.77}></Presentation>;
 }
