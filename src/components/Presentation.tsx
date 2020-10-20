@@ -46,7 +46,7 @@ const presentationImage: CSSProperties = {
     width: '290px'
 }
 
-const Presentation = ({ name, lastName, balance }: PresentationtProps) => {
+const Presentation = ({ name, lastName, balance }: PresentationProps) => {
     return (
         <Jumbotron style={ presentationContainer }>
             <Row>
