@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import videoSample from "../../assets/videos/tap-beer.mp4";
 import { Button, Form } from "react-bootstrap"
 import "./styles.css"
+import Register from "../Register"
 
 export default function Login() {
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const handleCloseModal = () => setModalVisible(false);
+  const handleOpenModal = () => setModalVisible(true);
+
+
+
+
   return (
     <>
       <video muted autoPlay loop id="Opening beer video" className="welcome-video">
@@ -29,12 +38,14 @@ export default function Login() {
             </Button>
             <Form.Text className="text-muted login-cadastro">
               Ainda não tem uma conta?
-              Cadastre-se
+              <p style={{ fontWeight: 700, cursor: 'pointer' }} onClick={handleOpenModal}>
+                Cadastre-se
+              </p>
             </Form.Text>
           </div>
         </Form>
       </div>
-
+      <Register handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
     </>
   )
 }
