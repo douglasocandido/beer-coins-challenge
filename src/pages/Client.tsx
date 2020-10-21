@@ -11,12 +11,6 @@ import OperationsTable from '../components/OperationsTable';
 import IReceiptData from '../interfaces/IReceiptData';
 import IOperationData from '../interfaces/IOperationData';
 
-const outLineButtonStyle: CSSProperties =  {
-  color: '#FF8832', 
-  borderColor: '#FF8832',
-  backgroundColor: 'transparent',
-}
-
 const receipts: IReceiptData[] = [
   {
     id: '23145656',
@@ -69,17 +63,17 @@ const operations: IOperationData[] = [
 export default function Client() {
   return (
     <>
-      <NavbarComponent name="Douglas"></NavbarComponent>
-      <Presentation name="Douglas" lastName="Candido" balance={9999.77}></Presentation>
+      <NavbarComponent name="Douglas" />
+      <Presentation name="Douglas" lastName="Candido" balance={9999.77} />
       <Row style={{ padding: '0rem 2rem 2rem 2rem', marginRight: 0, marginLeft: 0 }}>
         <Col xs={6}>
           <Row className="justify-content-center" style={{ marginBottom: '20px' }}>
             <ReceiptTable tableTitle='Últimos lançamentos' receiptData={receipts}/>
-            <Button style={ outLineButtonStyle } variant="outline-warning">Ver todos os lançamentos</Button>
+            <Button style={{color: '#FF8832',  borderColor: '#FF8832', backgroundColor: 'transparent'}} variant="outline-warning" href="/receipt">Ver todos os lançamentos</Button>
           </Row>
           <Row className="justify-content-center" style={{ marginBottom: '20px' }}>
             <OperationsTable tableTitle='Extrato' operationData={operations}/>
-            <Button style={ outLineButtonStyle } variant="outline-warning">Ver extrato completo</Button>
+            <Button style={{color: '#FF8832',  borderColor: '#FF8832', backgroundColor: 'transparent'}} variant="outline-warning" href="/operations">Ver extrato completo</Button>
           </Row>
         </Col>
         <Col style={{ padding: '2rem 4rem' }}>
