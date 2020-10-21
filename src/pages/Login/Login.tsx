@@ -1,9 +1,40 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
+import jwt_decode from "jwt-decode";
+
 import videoSample from "../../assets/videos/tap-beer.mp4";
 import { Button, Form } from "react-bootstrap"
 import "./styles.css"
 
+import { apiService } from '../../App';
+import { useAppDispatch } from '../../AppContext';
+
 export default function Login() {
+
+  const [dispatch] = useAppDispatch();
+
+  function handleLogin(event: FormEvent) {
+    dispatch({
+      type: 'REQUEST_LOGIN'
+    })
+    event.preventDefault();
+    apiService.login('email', 'password')
+    .then(({token}) => {
+      const {name, role} = jwt_decode(token);
+      dispatch({
+        type: 'SET_TOKEN', 
+        token: {name, role}
+      })
+      dispatch({
+        type: 'REQUEST_LOGIN_SUCCESS'
+      })
+    })
+    .catch((error) => {
+      dispatch({
+        type: 'REQUEST_LOGIN_FAIL'
+      })
+    })
+  }
+
   return (
     <>
       <video muted autoPlay loop id="Opening beer video" className="welcome-video">
@@ -24,7 +55,7 @@ export default function Login() {
             <Form.Control type="password" placeholder="Digite sua senha" />
           </Form.Group>
           <div className="login-action-wrapper">
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" onClick={handleLogin}>
               Entrar
             </Button>
             <Form.Text className="text-muted login-cadastro">
