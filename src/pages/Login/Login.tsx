@@ -1,9 +1,10 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useState } from 'react';
 import jwt_decode from "jwt-decode";
 
 import videoSample from "../../assets/videos/tap-beer.mp4";
 import { Button, Form } from "react-bootstrap"
 import "./styles.css"
+import Register from "../Register"
 
 import { apiService } from '../../App';
 import { useAppDispatch } from '../../AppContext';
@@ -21,7 +22,7 @@ export default function Login() {
     .then(({token}) => {
       const {name, role} = jwt_decode(token);
       dispatch({
-        type: 'SET_TOKEN', 
+        type: 'SET_TOKEN',
         token: {name, role}
       })
       dispatch({
@@ -34,6 +35,10 @@ export default function Login() {
       })
     })
   }
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const handleCloseModal = () => setModalVisible(false);
+  const handleOpenModal = () => setModalVisible(true);
 
   return (
     <>
@@ -60,12 +65,14 @@ export default function Login() {
             </Button>
             <Form.Text className="text-muted login-cadastro">
               Ainda não tem uma conta?
-              Cadastre-se
+              <p style={{ fontWeight: 700, cursor: 'pointer' }} onClick={handleOpenModal}>
+                Cadastre-se
+              </p>
             </Form.Text>
           </div>
         </Form>
       </div>
-
+      <Register handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
     </>
   )
 }
