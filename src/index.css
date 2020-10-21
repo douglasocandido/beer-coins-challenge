@@ -26,3 +26,8 @@ code {
   right: 0 !important;
   left: auto !important;
 }
+
+.btn-outline-warning:focus:hover:active {
+  color: rgb(255, 136, 50);
+  border-color: rgb(255, 136, 50);
+}

@@ -12,6 +12,7 @@ interface PresentationProps {
     name: string;
     lastName: string;
     balance: number;
+    backToHome?: boolean;
 }
 
 const outLineButtonStyle: CSSProperties =  {
@@ -46,7 +47,7 @@ const presentationImage: CSSProperties = {
     width: '290px'
 }
 
-const Presentation = ({ name, lastName, balance }: PresentationProps) => {
+const Presentation = ({ name, lastName, balance, backToHome }: PresentationProps) => {
     return (
         <Jumbotron style={ presentationContainer }>
             <Row>
@@ -59,7 +60,7 @@ const Presentation = ({ name, lastName, balance }: PresentationProps) => {
                         </Col>
                         <Col style={ textAlignCenter }>
                             <p><Button style={ buttonStyle } variant="warning">Transferir</Button></p>
-                            <p><Button style={ outLineButtonStyle } variant="outline-warning">Ver extrato</Button></p>
+                            {backToHome ? <p><Button style={ outLineButtonStyle } variant="outline-warning" href="/client">Voltar</Button></p> : null}
                         </Col>
                     </Row>
                 </Col>
