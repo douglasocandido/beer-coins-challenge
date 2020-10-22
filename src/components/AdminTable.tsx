@@ -3,12 +3,13 @@ import {
     Table
 } from 'react-bootstrap';
 import IAdminData from '../interfaces/IAdminData'
-import Popover from '../components/Popover'
+import Popover from './Popover'
 
 interface AdminTableProps {
     tableTitle: string;
     adminData: IAdminData[];
 }
+
 
 
 const AdminTable = ({ tableTitle, adminData }: AdminTableProps) => {
@@ -36,8 +37,9 @@ const AdminTable = ({ tableTitle, adminData }: AdminTableProps) => {
                             <td>{admin.email}</td>
                             <td>{admin.cnpj}</td>
                             <td><a href={`#${admin.action}`} >
-                                {admin.action}
-                            </a></td>
+                            </a>
+                            < Popover />
+                           </td>
                         </tr>
                         )
                     )}
