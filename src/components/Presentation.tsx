@@ -7,6 +7,7 @@ import {
     Image
 } from 'react-bootstrap';
 
+
 interface PresentationProps {
     title: string;
     balance: number;
@@ -35,6 +36,7 @@ const Presentation = ({ title, balance, backToHome, image }: PresentationProps) 
                     <Image style={{ height: '290px' }} src={image} />
                 </Col>
             </Row>
+            <ModalTransfer handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
         </Jumbotron>
     )
 };
