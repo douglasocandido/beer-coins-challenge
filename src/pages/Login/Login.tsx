@@ -1,5 +1,4 @@
 import React, { FormEvent, useState } from 'react';
-import jwt_decode from "jwt-decode";
 
 import videoSample from "../../assets/videos/tap-beer.mp4";
 import { Button, Form } from "react-bootstrap"
@@ -19,11 +18,10 @@ export default function Login() {
     })
     event.preventDefault();
     apiService.login('email', 'password')
-    .then(({token}) => {
-      const {name, role} = jwt_decode(token);
+    .then((user) => {
       dispatch({
         type: 'SET_TOKEN',
-        token: {name, role}
+        user
       })
       dispatch({
         type: 'REQUEST_LOGIN_SUCCESS'
