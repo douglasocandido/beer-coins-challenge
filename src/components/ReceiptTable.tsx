@@ -26,7 +26,7 @@ const ReceiptTableTable = ({ tableTitle, receiptData }: ReceiptTableProps) => {
                     {receiptData.map((receipt: IReceiptData) => (
                         <tr>
                             <td>{receipt.id}</td>
-                            <td>{receipt.value}</td>
+                            <td>B$ {receipt.value}</td>
                             <td>{receipt.operationDate.toDateString()}</td>
                         </tr>
                         )

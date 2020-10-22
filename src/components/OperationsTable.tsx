@@ -28,7 +28,7 @@ const OperationsTable = ({ tableTitle, operationData }: OperationsTableProps) =>
                         <tr>
                             <td>{operation.id}</td>
                             <td>{operation.beneficiary}</td>
-                            <td>{operation.value}</td>
+                            <td>B$ {operation.value}</td>
                             <td>{operation.operationDate.toDateString()}</td>
                         </tr>
                         )
