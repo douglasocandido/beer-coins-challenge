@@ -17,7 +17,7 @@ import APIService from './services/APIService'
 import AxiosHandler from './services/AxiosHandler'
 import { AppContextProvider } from './AppContext';
 
-const axiosHandler = new AxiosHandler(process.env.REACT_APP_API_URL || 'http://localhost')
+const axiosHandler = new AxiosHandler(process.env.REACT_APP_API_URL || 'https://beertech-banco.herokuapp.com/beercoins')
 export const apiService = new APIService(axiosHandler)
 
 function App() {

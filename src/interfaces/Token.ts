@@ -1,9 +1,12 @@
 export interface ITokenData {
-  token: string
-  type: string
+  Name: string,
+  Perfil: string
+  exp: number,
+  iat: number,
+  sub: number,
 }
 
-export interface TokenState {
-  name: string,
-  role: string
+export interface IToken {
+  token: string,
+  type: string
 }
