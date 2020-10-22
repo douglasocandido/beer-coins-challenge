@@ -55,8 +55,8 @@ const Presentation = ({ name, lastName, balance, backToHome }: PresentationProps
                     <h1 style={ presentationTitle }>Olá, {name} {lastName}!</h1>
                     <Row>
                         <Col style={ textAlignCenter }>
-                            <p>Saldo em conta:</p>
-                            <p>R$ {balance}</p>
+                            <p style={{fontSize: '23px'}}>Saldo em conta:</p>
+                            <p style={{fontSize: '23px'}}>B$ {balance}</p>
                         </Col>
                         <Col style={ textAlignCenter }>
                             <p><Button style={ buttonStyle } variant="warning">Transferir</Button></p>
