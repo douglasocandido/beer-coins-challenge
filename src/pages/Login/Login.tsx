@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useRef } from 'react';
 
 import videoSample from "../../assets/videos/tap-beer.mp4";
 import { Button, Form } from "react-bootstrap"
@@ -13,8 +13,8 @@ import { useAppDispatch } from '../../AppContext';
 
 export default function Login() {
   const [isModalVisible, setModalVisible] = useState(false);
-  const [emailInfo, setEmailInfo] = useState('')
-  const [passwordInfo, setPasswordInfo] = useState('')
+  const emailRef = useRef<HTMLInputElement | null>(null)
+  const passwordRef = useRef<HTMLInputElement | null>(null)
 
   const [dispatch] = useAppDispatch();
   const notify = (type: string) => {
@@ -33,18 +33,15 @@ export default function Login() {
       type: 'REQUEST_LOGIN'
     })
     event.preventDefault();
-    apiService.login(emailInfo, passwordInfo)
+    apiService.login(emailRef?.current?.value!, passwordRef?.current?.value!)
       .then((user) => {
         dispatch({
-          type: 'SET_TOKEN',
+          type: 'SET_USER',
           user
         })
         notify('success');
       })
-      .catch((error) => {
-        dispatch({
-          type: 'REQUEST_LOGIN_FAIL'
-        })
+      .catch(() => {
         notify('failed');
       })
   }
@@ -66,11 +63,11 @@ export default function Login() {
           </h2>
           <Form.Group className="text-left" controlId="formBasicEmail">
             <Form.Label>E-mail</Form.Label>
-            <Form.Control type="email" placeholder="Digite seu e-mail" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmailInfo(e.target.value)} />
+            <Form.Control type="email" placeholder="Digite seu e-mail" ref={emailRef} />
           </Form.Group>
           <Form.Group className="text-left" controlId="formBasicPassword">
             <Form.Label>Senha</Form.Label>
-            <Form.Control type="password" placeholder="Digite sua senha" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPasswordInfo(e.target.value)} />
+            <Form.Control type="password" placeholder="Digite sua senha" ref={passwordRef} />
           </Form.Group>
           <div className="login-action-wrapper">
             <Button variant="primary" type="submit" onClick={handleLogin}>
