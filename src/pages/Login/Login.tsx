@@ -1,4 +1,5 @@
 import React, { FormEvent, useState, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import videoSample from "../../assets/videos/tap-beer.mp4";
 import { Button, Form } from "react-bootstrap"
@@ -16,6 +17,7 @@ export default function Login() {
   const emailRef = useRef<HTMLInputElement | null>(null)
   const passwordRef = useRef<HTMLInputElement | null>(null)
 
+  const history = useHistory();
   const [dispatch] = useAppDispatch();
   const notify = (type: string) => {
     let message;
@@ -29,9 +31,6 @@ export default function Login() {
 
   function handleLogin(event: FormEvent) {
     notify('loading');
-    dispatch({
-      type: 'REQUEST_LOGIN'
-    })
     event.preventDefault();
     apiService.login(emailRef?.current?.value!, passwordRef?.current?.value!)
       .then((user) => {
@@ -40,6 +39,7 @@ export default function Login() {
           user
         })
         notify('success');
+        history.push('/')
       })
       .catch(() => {
         notify('failed');
