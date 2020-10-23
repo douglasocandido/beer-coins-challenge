@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from 'react';
 
 import videoSample from "../../assets/videos/tap-beer.mp4";
 import { Button, Form } from "react-bootstrap"
-import "./styles.css"
+import "./style.scss"
 import Register from "../Register"
 
 import { apiService } from '../../App';
@@ -63,7 +63,7 @@ export default function Login() {
             </Button>
             <Form.Text className="text-muted login-cadastro">
               Ainda não tem uma conta?
-              <p style={{ fontWeight: 700, cursor: 'pointer' }} onClick={handleOpenModal}>
+              <p className='register-link' onClick={handleOpenModal}>
                 Cadastre-se
               </p>
             </Form.Text>

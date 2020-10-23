@@ -1,16 +1,17 @@
 import React from 'react';
-import Presentation from '../components/Presentation';
-import NavbarComponent from '../components/NavbarComponent';
+import Presentation from '../../components/Presentation';
+import NavbarComponent from '../../components/NavbarComponent';
 import { 
   Row,
   Col,
   Button
 } from 'react-bootstrap';
-import ReceiptTable from '../components/ReceiptTable';
-import OperationsTable from '../components/OperationsTable';
-import IReceiptData from '../interfaces/IReceiptData';
-import IOperationData from '../interfaces/IOperationData';
-import contentImage from '../assets/images/client.svg';
+import ReceiptTable from '../../components/ReceiptTable';
+import OperationsTable from '../../components/OperationsTable';
+import IReceiptData from '../../interfaces/IReceiptData';
+import IOperationData from '../../interfaces/IOperationData';
+import contentImage from '../../assets/images/client.svg';
+import './style.scss'
 
 const receipts: IReceiptData[] = [
   {
@@ -66,21 +67,21 @@ export default function Client() {
     <>
       <NavbarComponent name="Douglas" />
       <Presentation title="Olá, Douglas Candido!" balance={9999.77} image={contentImage} />
-      <Row style={{ padding: '0rem 2rem 2rem 2rem', marginRight: 0, marginLeft: 0 }}>
+      <Row className='client-container'>
         <Col xs={6}>
           <Row className="justify-content-center" style={{ marginBottom: '20px' }}>
             <h2>Últimos lançamentos</h2>
             <ReceiptTable receiptData={receipts}/>
-            <Button style={{color: '#FF8832',  borderColor: '#FF8832', backgroundColor: 'transparent'}} variant="outline-warning" href="/receipt">Ver todos os lançamentos</Button>
+            <Button className='regular-outline-button' variant="outline-warning" href="/receipt">Ver todos os lançamentos</Button>
           </Row>
           <Row className="justify-content-center" style={{ marginBottom: '20px' }}>
             <h2>Extrato</h2>
             <OperationsTable operationData={operations}/>
-            <Button style={{color: '#FF8832',  borderColor: '#FF8832', backgroundColor: 'transparent'}} variant="outline-warning" href="/operations">Ver extrato completo</Button>
+            <Button className='regular-outline-button' variant="outline-warning" href="/operations">Ver extrato completo</Button>
           </Row>
         </Col>
-        <Col style={{ padding: '2rem 4rem' }}>
-          <div style={{ width: '100%', height: '100%', backgroundColor: '#dedede' }}></div>
+        <Col className='rewards-preview-container'>
+          <div className='rewards-preview'></div>
         </Col>
       </Row>
     </>

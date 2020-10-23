@@ -1,9 +1,9 @@
 import React from 'react';
-import NavbarComponent from '../components/NavbarComponent';
-import Presentation from '../components/Presentation';
-import OperationsTable from '../components/OperationsTable';
-import IOperationData from '../interfaces/IOperationData';
-import contentImage from '../assets/images/operations.svg';
+import NavbarComponent from '../../components/NavbarComponent';
+import Presentation from '../../components/Presentation';
+import OperationsTable from '../../components/OperationsTable';
+import IOperationData from '../../interfaces/IOperationData';
+import contentImage from '../../assets/images/operations.svg';
 
 const operations: IOperationData[] = [
   {
@@ -41,7 +41,7 @@ export default function Operations() {
     <>
       <NavbarComponent name="Douglas" />
       <Presentation title="Extrato completo" balance={9999.77} backToHome  image={contentImage}/>
-      <div className="justify-content-center" style={{ textAlign: 'center', padding: '10px 45px' }}>
+      <div className="justify-content-center completed-table-container">
         <OperationsTable operationData={operations}/>
       </div>
     </>

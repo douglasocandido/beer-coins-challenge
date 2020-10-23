@@ -1,7 +1,6 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import { Button, Form, Modal } from "react-bootstrap"
-import ModalFooter from "../components/ModalFooter"
-
+import ModalFooter from "../../components/ModalFooter"
 
 interface RegisterProps {
   handleShow: () => void,
@@ -9,22 +8,7 @@ interface RegisterProps {
   show: boolean
 }
 
-
-
 export default function Register({ handleShow, handleClose, show }: RegisterProps) {
-
-  const outLineButtonStyle: CSSProperties = {
-    color: '#FF8832',
-    borderColor: '#FF8832',
-    backgroundColor: 'transparent'
-  }
-
-  const buttonStyle: CSSProperties = {
-    color: '#fff',
-    fontWeight: 'bold',
-    backgroundColor: '#FF8832',
-    borderColor: '#FF8832'
-  }
 
   return (
     <>
@@ -47,8 +31,8 @@ export default function Register({ handleShow, handleClose, show }: RegisterProp
 
         </Modal.Body>
         <Modal.Footer style={{ justifyContent: 'space-between' }}>
-          <Button style={outLineButtonStyle} variant="outline-warning" onClick={handleClose}>Cancelar</Button>
-          <Button style={buttonStyle} variant="warning">Cadastrar</Button>
+          <Button variant="outline-warning" className="regular-outline-button" onClick={handleClose}>Cancelar</Button>
+          <Button className="regular-button" variant="warning">Cadastrar</Button>
           <ModalFooter />
         </Modal.Footer>
       </Modal>
