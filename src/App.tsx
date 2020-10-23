@@ -14,6 +14,7 @@ import Receipt from './pages/Receipt';
 import Register from './pages/Register';
 import Error from './pages/Error';
 
+
 import APIService from './services/APIService'
 import AxiosHandler from './services/AxiosHandler'
 import { AppContextProvider } from './AppContext';
@@ -24,9 +25,9 @@ export const apiService = new APIService(axiosHandler)
 function App() {
   return (
     <AppContextProvider>
-    <div className="App">
-      <Router>
-        {/* A <Switch> looks through its children <Route>s and
+      <div className="App">
+        <Router>
+          {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           <Switch>
             <Route path="/admin" component={Admin} />
@@ -37,8 +38,8 @@ function App() {
             <Route path="/register" component={Register} />
             <Route path="*" component={Error} />
           </Switch>
-      </Router>
-    </div>
+        </Router>
+      </div>
     </AppContextProvider>
   );
 }
