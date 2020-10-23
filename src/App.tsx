@@ -12,6 +12,7 @@ import Login from './pages/Login/Login';
 import Operations from './pages/Operations';
 import Receipt from './pages/Receipt';
 import Register from './pages/Register';
+import Error from './pages/Error';
 
 import APIService from './services/APIService'
 import AxiosHandler from './services/AxiosHandler'
@@ -34,6 +35,7 @@ function App() {
             <Route path="/operations" component={Operations} />
             <Route path="/receipt" component={Receipt} />
             <Route path="/register" component={Register} />
+            <Route path="*" component={Error} />
           </Switch>
       </Router>
     </div>
