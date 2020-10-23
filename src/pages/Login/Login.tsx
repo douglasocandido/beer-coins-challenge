@@ -13,6 +13,8 @@ import { useAppDispatch } from '../../AppContext';
 
 export default function Login() {
   const [isModalVisible, setModalVisible] = useState(false);
+  const [validated, setValidated] = useState(false);
+
   const emailRef = useRef<HTMLInputElement | null>(null)
   const passwordRef = useRef<HTMLInputElement | null>(null)
 
@@ -26,7 +28,6 @@ export default function Login() {
       case 'default': message = 'Algo está errado'; toast.info(message)
     }
   }
-  const [validated, setValidated] = useState(false);
 
   function handleLogin(event: any) {
     const form = event.currentTarget;

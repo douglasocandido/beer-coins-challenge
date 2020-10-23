@@ -12,6 +12,7 @@ interface RegisterProps {
 
 
 export default function Register({ handleShow, handleClose, show }: RegisterProps) {
+  const [validated, setValidated] = useState(false);
 
   const userNameRef = useRef<HTMLInputElement | null>(null)
   const userPasswordRef = useRef<HTMLInputElement | null>(null)
@@ -19,8 +20,15 @@ export default function Register({ handleShow, handleClose, show }: RegisterProp
   const userEmailRef = useRef<HTMLInputElement | null>(null)
 
 
-  const handleRegister = (event: FormEvent) => {
-    event.preventDefault();
+  const handleRegister = (event: any) => {
+    const form = event.currentTarget;
+
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
     const createAccountObject = {
       cnpj: userCNPJRef?.current?.value!,
       email: userEmailRef?.current?.value!,
@@ -52,25 +60,43 @@ export default function Register({ handleShow, handleClose, show }: RegisterProp
         <Modal.Header closeButton>
           <Modal.Title>Cadastre-se</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-
-          <Form.Group controlId="form-subscribe">
-            <Form.Label>Nome completo</Form.Label>
-            <Form.Control type="text" placeholder="Digite seu nome" ref={userNameRef} />
-            <Form.Label>Endereço de e-mail</Form.Label>
-            <Form.Control type="email" placeholder="Digite seu e-mail" ref={userEmailRef} />
-            <Form.Label>CNPJ</Form.Label>
-            <Form.Control type="text" placeholder="22.724.645/0001-00" ref={userCNPJRef} />
-            <Form.Label>Senha</Form.Label>
-            <Form.Control type="password" placeholder="Digite uma senha" ref={userPasswordRef} />
-          </Form.Group>
-
-        </Modal.Body>
-        <Modal.Footer style={{ justifyContent: 'space-between' }}>
-          <Button style={outLineButtonStyle} variant="outline-warning" onClick={handleCancel}>Cancelar</Button>
-          <Button style={buttonStyle} variant="warning" onClick={handleRegister}>Cadastrar</Button>
-          <ModalFooter />
-        </Modal.Footer>
+        <Form noValidate validated={validated} onSubmit={handleRegister}>
+          <Modal.Body>
+            <Form.Group controlId="validationCustom01" >
+              <Form.Label>Nome completo</Form.Label>
+              <Form.Control type="text" required placeholder="Digite seu nome" ref={userNameRef} />
+              <Form.Control.Feedback type="invalid">
+                Campo obrigatório
+            </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group controlId="validationCustom02" >
+              <Form.Label>Endereço de e-mail</Form.Label>
+              <Form.Control type="email" required placeholder="Digite seu e-mail" ref={userEmailRef} />
+              <Form.Control.Feedback type="invalid">
+                Campo obrigatório
+            </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group controlId="validationCustom03" >
+              <Form.Label>CNPJ</Form.Label>
+              <Form.Control type="text" required placeholder="22.724.645/0001-00" ref={userCNPJRef} />
+              <Form.Control.Feedback type="invalid">
+                Campo obrigatório
+            </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group controlId="validationCustom04" >
+              <Form.Label>Senha</Form.Label>
+              <Form.Control type="password" required placeholder="Digite uma senha" ref={userPasswordRef} />
+              <Form.Control.Feedback type="invalid">
+                Campo obrigatório
+            </Form.Control.Feedback>
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer style={{ justifyContent: 'space-between' }}>
+            <Button style={outLineButtonStyle} variant="outline-warning" onClick={handleCancel}>Cancelar</Button>
+            <Button style={buttonStyle} variant="warning" type="submit">Cadastrar</Button>
+            <ModalFooter />
+          </Modal.Footer>
+        </Form>
       </Modal>
     </>
   );
