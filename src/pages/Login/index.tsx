@@ -5,7 +5,7 @@ import { Button, Form } from "react-bootstrap"
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import "./styles.scss"
+import "./style.scss"
 import Register from "../Register"
 
 import { apiService } from '../../App';
