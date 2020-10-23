@@ -3,6 +3,7 @@ import NavbarComponent from '../components/NavbarComponent';
 import Presentation from '../components/Presentation';
 import ReceiptTable from '../components/ReceiptTable';
 import IReceiptData from '../interfaces/IReceiptData';
+import contentImage from '../assets/images/receipt.svg';
 
 const receipts: IReceiptData[] = [
   {
@@ -26,9 +27,9 @@ export default function Operations() {
   return (
     <>
       <NavbarComponent name="Douglas" />
-      <Presentation name="Douglas" lastName="Candido" balance={9999.77} backToHome/>
+      <Presentation title="Todos meus lançamentos" balance={9999.77} backToHome image={contentImage} />
       <div className="justify-content-center" style={{ textAlign: 'center', padding: '10px 45px' }}>
-        <ReceiptTable tableTitle='Todos lançamentos' receiptData={receipts}/>
+        <ReceiptTable receiptData={receipts}/>
       </div>
     </>
   )

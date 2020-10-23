@@ -5,15 +5,13 @@ import {
 import IReceiptData from '../interfaces/IReceiptData'
 
 interface ReceiptTableProps {
-    tableTitle: string;
     receiptData: IReceiptData[];
 }
 
-const ReceiptTableTable = ({ tableTitle, receiptData }: ReceiptTableProps) => {
+const ReceiptTableTable = ({ receiptData }: ReceiptTableProps) => {
 
     return (
         <>
-            <h2>{tableTitle}</h2>
             <Table striped bordered hover style={{ textAlign: 'left' }}>
                 <thead>
                 <tr>

@@ -5,15 +5,13 @@ import {
 import IOperationData from '../interfaces/IOperationData'
 
 interface OperationsTableProps {
-    tableTitle: string;
     operationData: IOperationData[];
 }
 
-const OperationsTable = ({ tableTitle, operationData }: OperationsTableProps) => {
+const OperationsTable = ({ operationData }: OperationsTableProps) => {
 
     return (
         <>
-            <h2>{tableTitle}</h2>
             <Table striped bordered hover style={{ textAlign: 'left' }}>
                 <thead>
                 <tr>

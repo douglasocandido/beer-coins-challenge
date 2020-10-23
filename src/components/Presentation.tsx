@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import { 
     Jumbotron, 
     Button,
@@ -6,66 +6,33 @@ import {
     Col,
     Image
 } from 'react-bootstrap';
-import contentImage from '../assets/images/client.svg'
 
 interface PresentationProps {
-    name: string;
-    lastName: string;
+    title: string;
     balance: number;
     backToHome?: boolean;
+    image: string;
 }
 
-const outLineButtonStyle: CSSProperties =  {
-    color: '#FF8832', 
-    borderColor: '#FF8832',
-    backgroundColor: 'transparent' 
-}
-
-const buttonStyle: CSSProperties = {
-    color: '#fff', 
-    fontWeight: 'bold', 
-    backgroundColor: '#FF8832', 
-    borderColor: '#FF8832'
-}
-
-const presentationTitle: CSSProperties = {
-    textAlign: 'center', 
-    marginBottom: '25px'
-}
-
-const presentationContainer: CSSProperties = {
-    backgroundColor: '#fff', 
-    marginBottom: '0px',
-    padding: '2rem 2rem'
-}
-
-const textAlignCenter: CSSProperties = {
-    textAlign: 'center'
-}
-
-const presentationImage: CSSProperties = {
-    width: '290px'
-}
-
-const Presentation = ({ name, lastName, balance, backToHome }: PresentationProps) => {
+const Presentation = ({ title, balance, backToHome, image }: PresentationProps) => {
     return (
-        <Jumbotron style={ presentationContainer }>
+        <Jumbotron style={{ backgroundColor: '#fff', marginBottom: '0px', padding: '2rem 2rem' }}>
             <Row>
                 <Col>
-                    <h1 style={ presentationTitle }>Olá, {name} {lastName}!</h1>
+                    <h1 style={{ textAlign: 'center', marginBottom: '25px' }}>{title}</h1>
                     <Row>
-                        <Col style={ textAlignCenter }>
+                        <Col style={{ textAlign: 'center' }}>
                             <p style={{fontSize: '23px'}}>Saldo em conta:</p>
                             <p style={{fontSize: '23px'}}>B$ {balance}</p>
                         </Col>
-                        <Col style={ textAlignCenter }>
-                            <p><Button style={ buttonStyle } variant="warning">Transferir</Button></p>
-                            {backToHome ? <p><Button style={ outLineButtonStyle } variant="outline-warning" href="/client">Voltar</Button></p> : null}
+                        <Col style={{ textAlign: 'center' }}>
+                            <p><Button style={{ color: '#fff', fontWeight: 'bold', backgroundColor: '#FF8832', borderColor: '#FF8832' }} variant="warning">Transferir</Button></p>
+                            {backToHome ? <p><Button style={{ color: '#FF8832', borderColor: '#FF8832', backgroundColor: 'transparent' }} variant="outline-warning" href="/client">Voltar</Button></p> : null}
                         </Col>
                     </Row>
                 </Col>
-                <Col style={ textAlignCenter }>
-                    <Image style={ presentationImage } src={contentImage} />
+                <Col style={{ textAlign: 'center' }}>
+                    <Image style={{ height: '290px' }} src={image} />
                 </Col>
             </Row>
         </Jumbotron>
