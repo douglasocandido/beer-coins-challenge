@@ -28,7 +28,7 @@ const Presentation = ({ title, balance, backToHome, image }: PresentationProps) 
                         </Col>
                         <Col className='align-center'>
                             <p><Button className='regular-button' variant="warning">Transferir</Button></p>
-                            {backToHome ? <p><Button className='regular-outline-button' variant="outline-warning" href="/client">Voltar</Button></p> : null}
+                            {backToHome ? <p><Button className='regular-outline-button' variant="outline-warning" href="/">Voltar</Button></p> : null}
                         </Col>
                     </Row>
                 </Col>
