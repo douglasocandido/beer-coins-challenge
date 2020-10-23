@@ -5,11 +5,36 @@ import OperationsTable from '../../components/OperationsTable';
 import IOperationData from '../../interfaces/IOperationData';
 import contentImage from '../../assets/images/operations.svg';
 
-t default function Operations() {
-  return(
-    <NavbarComponent name="Douglas">
-      <Presentation name="Douglas" lastName="Candido" balance={9999.77}></Presentation>    
-    </NavbarComponent>
+const operations: IOperationData[] = [
+  {
+    id: '654651',
+    beneficiary: 'Sheldon Cooper',
+    value: 200, 
+    operationDate: new Date(),
+    operationType: 'Transferência'
+  },
+  {
+    id: '23234',
+    beneficiary: 'Rajesh Koothrappali',
+    value: 200, 
+    operationDate: new Date(),
+    operationType: 'Transferência'
+  },
+  {
+    id: '53563563',
+    beneficiary: 'Leonard Hofstadter',
+    value: 200, 
+    operationDate: new Date(),
+    operationType: 'Transferência'
+  },
+  {
+    id: '2146980',
+    beneficiary: 'Howard Wolowitz',
+    value: 200, 
+    operationDate: new Date(),
+    operationType: 'Transferência'
+  }
+];
 
 export default function Operations() {
   return (
