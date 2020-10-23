@@ -1,5 +1,6 @@
+
 import React, { useEffect } from 'react';
-import "./index.css";
+import "./App.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
@@ -9,7 +10,7 @@ import {
 } from "react-router-dom";
 import Admin from './pages/Admin';
 import Client from './pages/Client';
-import Login from './pages/Login/Login';
+import Login from './pages/Login';
 import Operations from './pages/Operations';
 import Receipt from './pages/Receipt';
 import Register from './pages/Register';

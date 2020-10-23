@@ -6,7 +6,7 @@ import { Button, Form } from "react-bootstrap"
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import "./styles.css"
+import "./style.scss"
 import Register from "../Register"
 
 import { apiService } from '../../App';
@@ -75,7 +75,7 @@ export default function Login() {
             </Button>
             <Form.Text className="text-muted login-cadastro">
               Ainda não tem uma conta?
-              <p style={{ fontWeight: 700, cursor: 'pointer' }} onClick={handleOpenModal}>
+              <p className='register-link' onClick={handleOpenModal}>
                 Cadastre-se
               </p>
             </Form.Text>
