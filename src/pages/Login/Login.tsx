@@ -1,7 +1,10 @@
-import React, { CSSProperties, useState } from 'react';
+import React, { CSSProperties, useState, useRef } from 'react';
 
 import videoSample from "../../assets/videos/tap-beer.mp4";
 import { Button, Form } from "react-bootstrap"
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import "./styles.css"
 import Register from "../Register"
 
@@ -9,6 +12,9 @@ import { apiService } from '../../App';
 import { useAppDispatch } from '../../AppContext';
 
 export default function Login() {
+  const [isModalVisible, setModalVisible] = useState(false);
+  const emailRef = useRef<HTMLInputElement | null>(null)
+  const passwordRef = useRef<HTMLInputElement | null>(null)
 
   const [dispatch] = useAppDispatch();
   const notify = (type: string) => {
@@ -36,23 +42,19 @@ export default function Login() {
       type: 'REQUEST_LOGIN'
     })
     event.preventDefault();
-    apiService.login('email', 'password')
+    apiService.login(emailRef?.current?.value!, passwordRef?.current?.value!)
       .then((user) => {
         dispatch({
-          type: 'SET_TOKEN',
+          type: 'SET_USER',
           user
         })
-        dispatch({
-          type: 'REQUEST_LOGIN_SUCCESS'
-        })
+        notify('success');
       })
-      .catch((error) => {
-        dispatch({
-          type: 'REQUEST_LOGIN_FAIL'
-        })
+      .catch(() => {
+        notify('failed');
       })
   }
-  const [isModalVisible, setModalVisible] = useState(false);
+
 
   const handleCloseModal = () => setModalVisible(false);
   const handleOpenModal = () => setModalVisible(true);
@@ -104,6 +106,8 @@ export default function Login() {
         </Form>
       </div>
       <Register handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
+      <ToastContainer />
+
     </>
   )
 }
