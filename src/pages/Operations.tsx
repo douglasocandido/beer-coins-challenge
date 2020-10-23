@@ -3,6 +3,7 @@ import NavbarComponent from '../components/NavbarComponent';
 import Presentation from '../components/Presentation';
 import OperationsTable from '../components/OperationsTable';
 import IOperationData from '../interfaces/IOperationData';
+import contentImage from '../assets/images/operations.svg';
 
 const operations: IOperationData[] = [
   {
@@ -39,9 +40,9 @@ export default function Operations() {
   return (
     <>
       <NavbarComponent name="Douglas" />
-      <Presentation name="Douglas" lastName="Candido" balance={9999.77} backToHome/>
+      <Presentation title="Extrato completo" balance={9999.77} backToHome  image={contentImage}/>
       <div className="justify-content-center" style={{ textAlign: 'center', padding: '10px 45px' }}>
-        <OperationsTable tableTitle='Extrato completo' operationData={operations}/>
+        <OperationsTable operationData={operations}/>
       </div>
     </>
   )
