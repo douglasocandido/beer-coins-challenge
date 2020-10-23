@@ -4,6 +4,7 @@ import {
     Button
 } from 'react-bootstrap';
 import contentImage from '../../assets/images/404.svg'
+import './style.scss'
 
 export default function Error() {
   return (
