@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 import IAPIHandler from "../interfaces/IAPIHandler";
 import { IToken, ITokenData, ITokenService } from "../interfaces/Token";
-import { IConta, IContaResponse } from "../interfaces/IConta";
+import { IConta, IContaResponse, IFormConta, IFormContaResponse } from "../interfaces/Conta";
 import { TokenService } from "./TokenService";
 
 export default class AxiosHandler implements IAPIHandler {
@@ -63,6 +63,12 @@ export default class AxiosHandler implements IAPIHandler {
   async listaContas(page: number = 0, pageSize: number = 10): Promise<IConta[]> {
     const { data } = await this.instance.get<IContaResponse>(`/conta?page=${page}&size=${pageSize}`);
     return data.content;
+  }
+
+  async criaConta(conta: IFormConta): Promise<IFormContaResponse> {
+    const { data } = await this.instance.post<IFormContaResponse>(`/conta`, conta);
+    console.log('criaConta', data)
+    return data;
   }
 
 }
