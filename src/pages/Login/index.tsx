@@ -5,6 +5,7 @@ import videoSample from "../../assets/videos/tap-beer.mp4";
 import { Button, Form, Spinner } from "react-bootstrap"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import imageContent from "../../assets/images/beer-image.jpg"
 
 import "./style.scss"
 
@@ -63,15 +64,16 @@ export default function Login() {
   }
 
   return (
-    <>
+    <div className="main-wrapper-login">
       <video muted autoPlay loop id="Opening beer video" className="welcome-video">
         <source src={videoSample} type="video/mp4" />
+        <img alt='Beer iamge' src={imageContent} title="Your browser does not support the <video> tag" />
       </video>
 
       <div className="login-form">
         <Form noValidate validated={validated} onSubmit={checkValidation}>
           <h2 className="text-left">
-            Faça seu login:
+            BeerCoins | Entrar
           </h2>
           <Form.Group className="text-left" controlId="validationCustom01">
             <Form.Label>E-mail</Form.Label>
@@ -92,6 +94,6 @@ export default function Login() {
           </div>
         </Form>
       </div>
-    </>
+    </div>
   )
 }
