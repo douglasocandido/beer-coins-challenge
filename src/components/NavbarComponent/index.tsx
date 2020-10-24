@@ -14,17 +14,21 @@ import { useAppState } from '../../AppContext';
 
 
 
-const handleLogout = () => {
-    const tokenService = new TokenService(window.localStorage);
-    tokenService.clearToken()
-    window.location.reload()
-}
+
 
 
 const NavbarComponent = () => {
     const history = useHistory();
+
     const handleRedirect = () => {
         history.push('/rewards')
+    }
+
+    const handleLogout = () => {
+        const tokenService = new TokenService(window.localStorage);
+        tokenService.clearToken();
+        history.push('/login');
+        window.location.reload()
     }
     const { user } = useAppState()
     return (
@@ -43,7 +47,7 @@ const NavbarComponent = () => {
                     <ButtonGroup vertical>
                         <DropdownButton as={ButtonGroup} title={user.Nome} id="bg-vertical-dropdown-3">
                             <Dropdown.Item onClick={handleLogout} eventKey="1">Logout</Dropdown.Item>
-                            <Dropdown.Item onClick={handleRedirect} eventKey="1">Rewards</Dropdown.Item>
+                            <Dropdown.Item onClick={handleRedirect} eventKey="1">Beerwards</Dropdown.Item>
                         </DropdownButton>
                     </ButtonGroup>
                 </Navbar.Text>

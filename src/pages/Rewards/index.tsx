@@ -12,8 +12,8 @@ import './style.scss';
 
 const imageUrl = 'https://emporiodacerveja.vtexassets.com/arquivos/ids/178169-800-auto?width=800&height=auto&aspect=true'
 
-
 export default function Rewards() {
+
     return (
         <>
             <NavbarComponent />

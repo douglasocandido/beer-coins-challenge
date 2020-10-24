@@ -65,10 +65,21 @@ function App() {
               !isLoggedIn ? <Login /> : <Redirect to="/" />
             }
           </Route>
-          <Route path="/operations" component={Operations} />
-          <Route path="/receipt" component={Receipt} />
-          <Route path="/register" component={Register} />
-          <Route path="/rewards" component={Rewards} />
+          <Route path="/operations">
+            {
+              !isLoggedIn ? <Login /> : <Operations />
+            }
+          </Route>
+          <Route path="/receipt" >
+            {
+              !isLoggedIn ? <Login /> : <Receipt />
+            }
+          </Route>
+          <Route path="/rewards">
+            {
+              !isLoggedIn ? <Login /> : <Rewards />
+            }
+          </Route>
           <Route path="*" component={Error} />
         </Switch>
         <ToastContainer />
