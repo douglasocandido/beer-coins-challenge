@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Operations from './pages/Operations';
 import Receipt from './pages/Receipt';
 import Register from './pages/Register';
+import Rewards from './pages/Rewards'
 import Error from './pages/Error';
 
 
@@ -40,9 +41,9 @@ function App() {
       const token = tokenService.getToken();
       if (token) {
         const user = TokenService.decodeToken<ITokenData>(token)
-        dispatch({type: SET_USER, user})
+        dispatch({ type: SET_USER, user })
       }
-    } catch(error) {
+    } catch (error) {
       console.error('fail to get and decode token', error)
     }
   }, [dispatch])
@@ -53,18 +54,19 @@ function App() {
         <Switch>
           <Route exact path="/">
             {
-              !isLoggedIn? <Redirect to="/login" />:
-              isAdmin ? <Admin /> : <Client />
+              !isLoggedIn ? <Redirect to="/login" /> :
+                isAdmin ? <Admin /> : <Client />
             }
           </Route>
           <Route path="/login">
             {
-              !isLoggedIn? <Login />: <Redirect to="/" />
+              !isLoggedIn ? <Login /> : <Redirect to="/" />
             }
           </Route>
           <Route path="/operations" component={Operations} />
           <Route path="/receipt" component={Receipt} />
           <Route path="/register" component={Register} />
+          <Route path="/rewards" component={Rewards} />
           <Route path="*" component={Error} />
         </Switch>
       </Router>

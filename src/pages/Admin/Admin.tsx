@@ -2,7 +2,7 @@ import React  from "react";
 import NavbarComponent from '../../components/NavbarComponent'
 import AdminTable from '../../components/AdminTable'
 import IAdminData from '../../interfaces/IAdminData'
-import "./styles.css"
+import "./style.scss"
 
 const admins: IAdminData[] = [
   {

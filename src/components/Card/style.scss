@@ -1,0 +1,8 @@
+.card-bottom-wrapper {
+  margin: 24px 0;
+  display: flex;
+  justify-content: space-between;
+  .product-price {
+    font-weight: 600;
+  }
+}
