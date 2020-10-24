@@ -2,35 +2,15 @@ import React, { CSSProperties } from 'react'
 import { Button, Form, Image, Modal, Col, FormGroup } from "react-bootstrap"
 import ModalFooter from '../ModalFooter'
 import transfer from "../../assets/images/transfer.svg"
-import './style.css'
+import './style.scss'
 
-interface TransferProps {
+interface ModalTransferProps {
     handleShow: () => void,
     handleClose: () => void,
     show: boolean
   }
-    
-  
-export default function ModalTransfer({ handleShow, handleClose, show }: TransferProps) {
-  
 
-const buttonStyle: CSSProperties = {
-  color: '#fff', 
-  fontWeight: 'bold', 
-  backgroundColor: '#FF8832', 
-  borderColor: '#FF8832',
-  paddingTop: '10px',
-  paddingLeft: '20px', 
-  paddingBottom: '10px',
-  paddingRight: '20px', 
-  marginLeft: '50px'
-}
-
-const outLineButtonStyle: CSSProperties =  {
-  color: '#dc3545',
-  backgroundColor: 'transparent',
-}
-
+export default function ModalTransfer({ handleClose, show }: ModalTransferProps) {
 
 const TransferImage: CSSProperties = {
   width: '200px'
@@ -68,7 +48,7 @@ const transferHeader: CSSProperties = {
             </Col>
           <Col xs={7} style={{ justifyContent: 'space-between', padding: '15px'}}>
             <Form.Label style={{fontSize: '15px'}}>Valor</Form.Label>
-            <Form.Control size="sm" type="text" placeholder="R$" />
+            <Form.Control size="sm" type="text" placeholder="B$" />
             </Col>
           <Col xs={5}>
                 <Image style={ TransferImage } src={transfer} />
@@ -78,8 +58,8 @@ const transferHeader: CSSProperties = {
         </Modal.Body>
             
         <Modal.Footer style={{ justifyContent: 'space-between', padding: '0px'}}>
-          <Button style={outLineButtonStyle} variant="link" onClick={handleClose}>Cancelar</Button>
-          <Button style={buttonStyle} variant="warning">Transferir</Button>
+          <Button className="regular-outline-button modal-transfer-button" variant="link" onClick={handleClose}>Cancelar</Button>
+          <Button className="regular-button modal-transfer-button" variant="warning">Transferir</Button>
         <ModalFooter />
         </Modal.Footer>
       </Modal>

@@ -13,7 +13,7 @@ const ModalFooter = () => {
             <Navbar.Brand href="#home" className='footer-title'>
                 <div>
                     <img alt="" src={logo} width="30" height="30" className="d-inline-block align-top" />{' '}
-                    <span style={{ marginLeft: '-9px', color: 'white' }}>eer Coins</span>
+                    <span className='footer-title-margin'>eer Coins</span>
                     <p className='footer-description'>AB Inbev Virtual Wallet</p>
                 </div>
             </Navbar.Brand>

@@ -7,7 +7,7 @@ import {
     Image
 } from 'react-bootstrap';
 import './style.scss'
-import ModalTransfer from '../Transfer/ModalTransfer'
+import ModalTransfer from '../ModalTransfer/ModalTransfer'
 
 interface PresentationProps {
     title: string;
