@@ -2,12 +2,12 @@ import React from "react";
 import { 
     Table
 } from 'react-bootstrap';
-import IAdminData from '../interfaces/IAdminData'
+import { IConta } from '../interfaces/Conta'
 import Popover from './Popover'
 
 interface AdminTableProps {
     tableTitle: string;
-    adminData: IAdminData[];
+    adminData: IConta[];
 }
 
 const AdminTable = ({ tableTitle, adminData }: AdminTableProps) => {
@@ -20,21 +20,21 @@ const AdminTable = ({ tableTitle, adminData }: AdminTableProps) => {
                 <tr>
                     <th>#</th>
                     <th>Nome</th>
-                    <th>Sobrenome</th>
                     <th>E-mail</th>
                     <th>CNPJ</th>
+                    <th>Saldo</th>
                     <th>Ações</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {adminData.map((admin: IAdminData, index: number) => (
-                        <tr>
+                    {adminData.map((conta: IConta, index: number) => (
+                        <tr key={conta.hash}>
                             <td>{index+1}</td>
-                            <td>{admin.name}</td>
-                            <td>{admin.lastname}</td>
-                            <td>{admin.email}</td>
-                            <td>{admin.cnpj}</td>
-                            <td><a href={`#${admin.action}`} >
+                            <td>{conta.nome}</td>
+                            <td>{conta.email}</td>
+                            <td>{conta.cnpj}</td>
+                            <td>{conta.saldo}</td>
+                            <td><a href='#depósito' >
                             </a>
                             < Popover />
                            </td>

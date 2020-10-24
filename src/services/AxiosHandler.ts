@@ -37,7 +37,7 @@ export default class AxiosHandler implements IAPIHandler {
           clearInterceptor();
           this.resetToken();
           console.log('unauthorized');
-          // TODO: redirect to login
+          window.location.reload();
         }
 
         return Promise.reject(error);
