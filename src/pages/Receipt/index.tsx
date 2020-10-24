@@ -8,7 +8,7 @@ export default function Receipt() {
   return (
     <>
       <NavbarComponent />
-      <Presentation title="Todos meus lançamentos" balance={9999.77} backToHome image={contentImage} />
+      <Presentation title="Todos meus lançamentos" backToHome image={contentImage} />
       <div className="justify-content-center completed-table-container">
         <ReceiptTable />
       </div>
