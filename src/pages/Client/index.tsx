@@ -10,6 +10,7 @@ import ReceiptTable from '../../components/ReceiptTable';
 import OperationsTable from '../../components/OperationsTable';
 import IReceiptData from '../../interfaces/IReceiptData';
 import IOperationData from '../../interfaces/IOperationData';
+import { IExtrato } from '../../interfaces/Extrato';
 import contentImage from '../../assets/images/client.svg';
 import './style.scss'
 
@@ -76,7 +77,7 @@ export default function Client() {
           </Row>
           <Row className="justify-content-center" style={{ marginBottom: '20px' }}>
             <h2>Extrato</h2>
-            <OperationsTable operationData={operations}/>
+            {/* <OperationsTable operationData={operations}/> */}
             <Button className='regular-outline-button' variant="outline-warning" href="/operations">Ver extrato completo</Button>
           </Row>
         </Col>
