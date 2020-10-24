@@ -9,7 +9,6 @@ import {
 } from 'react-bootstrap';
 import ReceiptTable from '../../components/ReceiptTable';
 import OperationsTable from '../../components/OperationsTable';
-import IReceiptData from '../../interfaces/IReceiptData';
 import contentImage from '../../assets/images/client.svg';
 import './style.scss'
 
