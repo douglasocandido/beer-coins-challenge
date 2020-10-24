@@ -7,12 +7,14 @@ import { useHistory } from 'react-router-dom';
 import { IExtrato, IExtratoForm } from '../../interfaces/Extrato';
 import { apiService } from '../../App';
 import FormatDate from '../../services/FormatDate';
+import EmptyTable from '../../components/EmptyTable'
 
 interface ReceiptTableProps {
     tableSize?: number;
+    isClientDashboard?: boolean;
 }
 
-const ReceiptTableTable = ({ tableSize=10 }: ReceiptTableProps) => {
+const ReceiptTableTable = ({ tableSize=10, isClientDashboard }: ReceiptTableProps) => {
 
     const [operations, setOperations] = useState<IExtrato[]>([]);
     const [emptyTable, setEmptyTable] = useState(true);
@@ -35,26 +37,34 @@ const ReceiptTableTable = ({ tableSize=10 }: ReceiptTableProps) => {
       })()
     }, [filters]);
 
-    return (
-        <>
-            <Table striped bordered hover className='text-align-left'>
-                <thead>
-                <tr>
-                    <th>Valor</th>
-                    <th>Data</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {operations.map((receipt: IExtrato) => (
+    const renderTable = (() => {
+        return (
+            <>
+                <Table striped bordered hover className='text-align-left'>
+                    <thead>
                         <tr>
-                            <td>{formatDate.format(receipt.dataHora)}</td>
-                            <td>B$ {receipt.valor}</td>
+                            <th>Valor</th>
+                            <th>Data</th>
                         </tr>
-                        )
-                    )}
-                </tbody>
-            </Table>
-            { emptyTable ? <span className='empty-table-text'>AINDA NÃO HÁ LANÇAMENTOS NA SUA CONTA</span>: <Button className='regular-outline-button' variant="outline-warning" onClick={() => handleRedirect('receipt')}>Ver todos os lançamentos</Button>}
+                    </thead>
+                    <tbody>
+                        {operations.map((receipt: IExtrato) => (
+                            <tr>
+                                <td>{formatDate.format(receipt.dataHora)}</td>
+                                <td>B$ {receipt.valor}</td>
+                            </tr>
+                            )
+                        )}
+                    </tbody>
+                </Table>
+                { isClientDashboard ? <Button className='regular-outline-button' variant="outline-warning" onClick={() => handleRedirect('receipt')}>Ver todos os lançamentos</Button> : null }
+            </>
+        )
+    })
+
+    return (
+        <>     
+            { emptyTable ? <EmptyTable /> : renderTable()}
         </>
     )
 };
