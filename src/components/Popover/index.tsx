@@ -1,25 +1,6 @@
-import React, { useState, useRef } from 'react'
-import { CSSProperties } from 'react'
-import { Button, Form, Col, Row, Popover, OverlayTrigger} from "react-bootstrap"
-
-const buttonStyle: CSSProperties = {
-    color: '#fff', 
-    fontWeight: 'bold', 
-    backgroundColor: '#FF8832', 
-    borderColor: '#FF8832',
-    paddingTop: '7px',
-    paddingLeft: '10px', 
-    paddingBottom: '7px',
-    paddingRight: '10px', 
-    marginLeft: '20px'
-  }
-  
-  const outLineButtonStyle: CSSProperties =  {
-    color: '#dc3545',
-    backgroundColor: 'transparent',
-    marginLeft: '48px'
-}
-
+import React, { useState, useRef } from 'react';
+import { Button, Form, Col, Row, Popover, OverlayTrigger} from "react-bootstrap";
+import './style.scss'
 
 function BeerPopover (){
     const [show, setShow] = useState(false);
@@ -35,13 +16,11 @@ function BeerPopover (){
                   Valor
                 </Form.Label>
                 <Col sm="6">
-                <Form.Control type="number" placeholder="R$" />
+                <Form.Control type="number" placeholder="B$" />
                 </Col>
                 </Form.Group>
-                <Button style={ outLineButtonStyle } variant="outline-danger">Cancelar</Button>
-
-
-                  <Button style={ buttonStyle } variant="warning">Depositar</Button>
+                  <Button className='regular-outline-button' variant="outline-danger">Cancelar</Button>
+                  <Button className='regular-button popover-button-margin' variant="warning">Depositar</Button>
                 </Form>
           </Popover.Content>
         </Popover>

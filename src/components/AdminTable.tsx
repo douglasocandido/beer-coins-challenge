@@ -10,14 +10,12 @@ interface AdminTableProps {
     adminData: IAdminData[];
 }
 
-
-
 const AdminTable = ({ tableTitle, adminData }: AdminTableProps) => {
 
     return (
         <>
             <h2>{tableTitle}</h2>
-            <Table responsive = "sm" style={{ textAlign: 'center' }}>
+            <Table responsive = "sm" className='text-align-center'>
                 <thead>
                 <tr>
                     <th>#</th>
