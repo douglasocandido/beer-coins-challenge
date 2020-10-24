@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Jumbotron,
     Button,
@@ -7,6 +7,7 @@ import {
     Image
 } from 'react-bootstrap';
 import './style.scss'
+import ModalTransfer from '../Transfer/ModalTransfer'
 
 interface PresentationProps {
     title: string;
@@ -16,6 +17,14 @@ interface PresentationProps {
 }
 
 const Presentation = ({ title, balance, backToHome, image }: PresentationProps) => {
+   
+    const [isModalVisible, setModalVisible] = React.useState(false);
+    const handleCloseModal = () => setModalVisible(false);
+    const handleOpenModal = () => {
+        console.log('teste')
+        setModalVisible(true);
+    }
+    
     return (
         <Jumbotron className='presentation-container'>
             <Row>
@@ -27,7 +36,7 @@ const Presentation = ({ title, balance, backToHome, image }: PresentationProps) 
                             <p className='presentation-subtitle'>B$ {balance}</p>
                         </Col>
                         <Col className='align-center'>
-                            <p><Button className='regular-button' variant="warning">Transferir</Button></p>
+                            <p><Button className='regular-button' variant="warning" onClick={handleOpenModal}>Transferir222</Button></p>
                             {backToHome ? <p><Button className='regular-outline-button' variant="outline-warning" href="/">Voltar</Button></p> : null}
                         </Col>
                     </Row>
@@ -36,6 +45,7 @@ const Presentation = ({ title, balance, backToHome, image }: PresentationProps) 
                     <Image className='presentation-image' src={image} />
                 </Col>
             </Row>
+            <ModalTransfer handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
         </Jumbotron>
     )
 };

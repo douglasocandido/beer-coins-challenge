@@ -1,5 +1,5 @@
 import React from 'react';
-import Presentation from '../../components/Presentation';
+import Presentation from '../../components/Presentation/index';
 import NavbarComponent from '../../components/NavbarComponent';
 import { 
   Row,

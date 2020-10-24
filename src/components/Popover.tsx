@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react'
 import { CSSProperties } from 'react'
 import { Button, Form, Col, Row, Popover, OverlayTrigger} from "react-bootstrap"
 
-
 const buttonStyle: CSSProperties = {
     color: '#fff', 
     fontWeight: 'bold', 
@@ -40,6 +39,8 @@ function BeerPopover (){
                 </Col>
                 </Form.Group>
                 <Button style={ outLineButtonStyle } variant="outline-danger">Cancelar</Button>
+
+
                   <Button style={ buttonStyle } variant="warning">Depositar</Button>
                 </Form>
           </Popover.Content>

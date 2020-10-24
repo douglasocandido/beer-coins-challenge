@@ -1,0 +1,40 @@
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem 1rem;
+    /* border-bottom: 1px solid #dee2e6; */
+    border-top-left-radius: calc(.3rem - 1px);
+    border-top-right-radius: calc(.3rem - 1px);
+}
+
+.transfer{
+    width: 120px;
+    height: 80px;
+    align-items: right;
+  }
+
+.transfer-form {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    position: inherit;
+    top: 20%;
+    color: #000;
+    text-align: center;
+    font-size: 20px;
+    background-color: #fff;
+    width: 800px;
+    height: 410px;
+    padding: 15px;
+    z-index: 999;
+    border-style: solid;
+    border-color: coral;
+    margin-top: 40px;
+  }
+
+.login-action-wrapper {
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-between;
+ }
+  
