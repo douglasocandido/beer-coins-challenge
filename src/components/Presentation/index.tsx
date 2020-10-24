@@ -1,6 +1,6 @@
 import React from "react";
-import { 
-    Jumbotron, 
+import {
+    Jumbotron,
     Button,
     Row,
     Col,
