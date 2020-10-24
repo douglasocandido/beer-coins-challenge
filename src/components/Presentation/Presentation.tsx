@@ -4,11 +4,11 @@ import {
   Button,
   Row,
   Col,
-  Image,
   Spinner
 } from 'react-bootstrap';
 import './style.scss'
-import ModalTransfer from '../ModalTransfer'
+import ModalTransfer from '../ModalTransfer/ModalTransfer'
+import HistoryRewards from '../../pages/Rewards/components/HistoryRewards'
 import { apiService } from "../../App";
 
 interface PresentationProps {
@@ -49,24 +49,26 @@ const Presentation = ({ title, backToHome, isRewardsScreen, image }: Presentatio
             {
               !isRewardsScreen ?
                 <Col className='align-center'>
-                  {<p><Button className='regular-button' variant="warning" onClick={handleOpenModal}>Transferir</Button></p>}
+                  <p><Button className='regular-button' variant="warning" onClick={handleOpenModal}>Transferir</Button></p>
                   {backToHome && <p><Button className='regular-outline-button' variant="outline-warning" href="/">Voltar</Button></p>}
                 </Col>
                 :
                 <Col className='align-center'>
-                  <p><Button className='regular-button' variant="warning" onClick={() => console.log('abrir modal')}>Ver histórico</Button></p>
+                  <p><Button className='regular-button' variant="warning" onClick={handleOpenModal}>Ver histórico</Button></p>
                   <p><Button className='regular-outline-button' variant="outline-warning" href="/">Voltar</Button></p>
                 </Col>
             }
           </Row>
-        </Col>
-        <Col className='align-center'>
-          <Image className='presentation-image' src={image} />
-        </Col>
-      </Row>
-      <ModalTransfer handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
+      </Col>
+    </Row>
+    {
+      isRewardsScreen ?
+        <HistoryRewards handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
+        :
+        <ModalTransfer handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
+    }
     </Jumbotron>
-  )
+  );
 };
 
 export default Presentation;
