@@ -8,6 +8,7 @@ import {
 } from 'react-bootstrap';
 import './style.scss'
 import ModalTransfer from '../ModalTransfer/ModalTransfer'
+import HistoryRewards from '../../pages/Rewards/components/HistoryRewards'
 
 interface PresentationProps {
     title: string;
@@ -22,7 +23,6 @@ const Presentation = ({ title, balance, backToHome, isRewardsScreen, image }: Pr
     const [isModalVisible, setModalVisible] = React.useState(false);
     const handleCloseModal = () => setModalVisible(false);
     const handleOpenModal = () => setModalVisible(true);
-
 
     return (
         <Jumbotron className='presentation-container'>
@@ -42,7 +42,7 @@ const Presentation = ({ title, balance, backToHome, isRewardsScreen, image }: Pr
                                 </Col>
                                 :
                                 <Col className='align-center'>
-                                    <p><Button className='regular-button' variant="warning" onClick={() => console.log('abrir modal')}>Ver histórico</Button></p>
+                                    <p><Button className='regular-button' variant="warning" onClick={handleOpenModal}>Ver histórico</Button></p>
                                     <p><Button className='regular-outline-button' variant="outline-warning" href="/">Voltar</Button></p>
                                 </Col>
                         }
@@ -52,7 +52,12 @@ const Presentation = ({ title, balance, backToHome, isRewardsScreen, image }: Pr
                     <Image className='presentation-image' src={image} />
                 </Col>
             </Row>
-            <ModalTransfer handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
+            {
+                isRewardsScreen ?
+                    <HistoryRewards handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
+                    :
+                    <ModalTransfer handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
+            }
         </Jumbotron>
     )
 };
