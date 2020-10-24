@@ -7,7 +7,7 @@ import {
     Image
 } from 'react-bootstrap';
 import './style.scss'
-import ModalTransfer from '../ModalTransfer/ModalTransfer'
+import ModalTransfer from '../ModalTransfer'
 import HistoryRewards from '../../pages/Rewards/components/HistoryRewards'
 
 interface PresentationProps {
@@ -56,7 +56,7 @@ const Presentation = ({ title, balance, backToHome, isRewardsScreen, image }: Pr
                 isRewardsScreen ?
                     <HistoryRewards handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
                     :
-                    <ModalTransfer handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
+                    <ModalTransfer hash={"sssss"} handleClose={handleCloseModal} show={isModalVisible} />
             }
         </Jumbotron>
     )

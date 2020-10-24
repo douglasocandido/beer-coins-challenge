@@ -4,6 +4,9 @@ import { IDepositoForm } from "../interfaces/Deposito";
 import { IExtrato, IExtratoForm } from "../interfaces/Extrato";
 import IAPIHandler from "../interfaces/IAPIHandler";
 import { ITokenData } from "../interfaces/Token";
+import { ITransferenciaForm } from '../interfaces/Transferencia';
+
+
 
 export default class APIService {
   constructor(
@@ -28,5 +31,9 @@ export default class APIService {
 
   deposito(form: IDepositoForm): Promise<AxiosResponse> {
     return this.apiAccess.deposito(form);
+  }
+
+  transferencia(form: ITransferenciaForm): Promise<AxiosResponse>{
+    return this.apiAccess.transferencia(form);
   }
 }
