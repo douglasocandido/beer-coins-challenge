@@ -39,7 +39,9 @@ function BeerPopover (){
                 </Col>
                 </Form.Group>
                 <Button style={ outLineButtonStyle } variant="outline-danger">Cancelar</Button>
-                  <Button style={ buttonStyle } variant="warning">Transferir</Button>
+
+
+                  <Button style={ buttonStyle } variant="warning">Depositar</Button>
                 </Form>
           </Popover.Content>
         </Popover>
@@ -48,7 +50,7 @@ function BeerPopover (){
     return(      
         <>
         <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-          <Button ref={target} onClick={() => setShow(!show)} variant="link">Click me to see</Button>
+          <Button ref={target} onClick={() => setShow(!show)} variant="link">Depósito</Button>
         </OverlayTrigger>
     </>
     )

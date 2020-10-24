@@ -1,14 +1,16 @@
-import React from 'react';
-import "./index.css";
+
+import React, { useEffect } from 'react';
+import "./App.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
-import Admin from './pages/Admin';
+import Admin from './pages/Admin/Admin';
 import Client from './pages/Client';
-import Login from './pages/Login/Login';
+import Login from './pages/Login';
 import Operations from './pages/Operations';
 import Receipt from './pages/Receipt';
 import Register from './pages/Register';
@@ -17,30 +19,56 @@ import Error from './pages/Error';
 
 import APIService from './services/APIService'
 import AxiosHandler from './services/AxiosHandler'
-import { AppContextProvider } from './AppContext';
+import { useAppDispatch, useAppState, SET_USER } from './AppContext';
+import { TokenService } from './services/TokenService';
+import { ITokenData } from './interfaces/Token';
 
-const axiosHandler = new AxiosHandler(process.env.REACT_APP_API_URL || 'https://beertech-banco.herokuapp.com/beercoins')
+const tokenService = new TokenService(window.localStorage);
+const apiUrl = process.env.REACT_APP_API_URL || 'https://beertech-banco.herokuapp.com/beercoins';
+const axiosHandler = new AxiosHandler(apiUrl, tokenService)
 export const apiService = new APIService(axiosHandler)
 
 function App() {
+  const appState = useAppState();
+  const [dispatch] = useAppDispatch();
+
+  const isLoggedIn = appState && !!appState.user.Nome;
+  const isAdmin = isLoggedIn && appState.user.Perfil === 'ROLE_ADMIN';
+
+  useEffect(() => {
+    try {
+      const token = tokenService.getToken();
+      if (token) {
+        const user = TokenService.decodeToken<ITokenData>(token)
+        dispatch({type: SET_USER, user})
+      }
+    } catch(error) {
+      console.error('fail to get and decode token', error)
+    }
+  }, [dispatch])
+
   return (
-    <AppContextProvider>
-      <div className="App">
-        <Router>
-          {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-          <Switch>
-            <Route path="/admin" component={Admin} />
-            <Route path="/client" component={Client} />
-            <Route exact path="/" component={Login} />
-            <Route path="/operations" component={Operations} />
-            <Route path="/receipt" component={Receipt} />
-            <Route path="/register" component={Register} />
-            <Route path="*" component={Error} />
-          </Switch>
-        </Router>
-      </div>
-    </AppContextProvider>
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            {
+              !isLoggedIn? <Redirect to="/login" />:
+              isAdmin ? <Admin /> : <Client />
+            }
+          </Route>
+          <Route path="/login">
+            {
+              !isLoggedIn? <Login />: <Redirect to="/" />
+            }
+          </Route>
+          <Route path="/operations" component={Operations} />
+          <Route path="/receipt" component={Receipt} />
+          <Route path="/register" component={Register} />
+          <Route path="*" component={Error} />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 

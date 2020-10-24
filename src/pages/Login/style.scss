@@ -23,7 +23,6 @@
 }
 
 .login-action-wrapper {
-  margin-top: 32px;
   display: flex;
   justify-content: space-between;
 }
@@ -31,4 +30,14 @@
 .login-cadastro {
   width: 60%;
   text-align: right;
+}
+
+.register-link {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-btn {
+  width: 100%;
+  height: 45px;
 }

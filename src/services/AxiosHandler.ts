@@ -1,16 +1,22 @@
-import axios, { AxiosError, AxiosInstance } from "axios";
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import IAPIHandler from "../interfaces/IAPIHandler";
-import { IToken, ITokenData } from "../interfaces/Token";
-import { Conta } from "../interfaces/Conta";
-import jwt_decode from "jwt-decode";
+import { IToken, ITokenData, ITokenService } from "../interfaces/Token";
+import { IConta, IContaResponse, IFormConta, IFormContaResponse } from "../interfaces/Conta";
+import { TokenService } from "./TokenService";
+import { IDepositoForm } from "../interfaces/Deposito";
+import { ITransferenciaForm } from "../interfaces/Transferencia";
+import { IExtratoForm } from "../interfaces/Extrato";
 
 export default class AxiosHandler implements IAPIHandler {
   private instance: AxiosInstance;
   private interceptor: any;
 
-  constructor(baseURL: string){
+  constructor(baseURL: string, private tokenService: ITokenService) {
     this.instance = axios.create({baseURL});
     this.setInterceptor();
+    const token = this.tokenService.getToken();
+    if (token) this.setToken(token);
+    else this.resetToken();
   }
 
   setInterceptor() {
@@ -29,7 +35,7 @@ export default class AxiosHandler implements IAPIHandler {
 
         if (isUnauthorized || isForbidden) {
           clearInterceptor();
-          window.localStorage.clearStorage();
+          this.resetToken();
           console.log('unauthorized');
           // TODO: redirect to login
         }
@@ -41,38 +47,47 @@ export default class AxiosHandler implements IAPIHandler {
 
   setToken(token: string) {
     this.instance.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
-    this.storeToken(token);
   }
 
-  storeToken(token: string) {
-    window.localStorage.setItem('token', token);
+  resetToken(): void {
+    delete this.instance.defaults.headers.common["Authorization"];
+    this.tokenService.clearToken();
   }
 
   async login(email: string, password: string): Promise<ITokenData> {
-    const { data } = await this.instance.post<IToken>('/login', {email, password});
+    const { data } = await this.instance.post<IToken>('/login', { email, password });
     const { token } = data;
 
     this.setToken(token);
-    return jwt_decode(token);
+    this.tokenService.storeToken(token);
+    return TokenService.decodeToken<ITokenData>(token);
   }
 
-  async listaContas(): Promise<Conta[]> {
-    return Promise.resolve([
-      {
-        "hash": "582969df5a77006e13731ed15ec58587",
-        "saldo": 210,
-        "nome": "Jonas",
-        "email": "jonas@email.com",
-        "cnpj": "01.234.567/0001-89"
-      },
-      {
-        "hash": "247114914379014f9297d74fad0335fd",
-        "saldo": 0,
-        "nome": "rodrigo",
-        "email": "rodrigo@rodrigo.com",
-        "cnpj": "12345678910"
-      }
-    ])
+  async listaContas(page: number = 0, pageSize: number = 10): Promise<IConta[]> {
+    const { data } = await this.instance.get<IContaResponse>(`/conta?page=${page}&size=${pageSize}`);
+    return data.content;
+  }
+
+  async criaConta(conta: IFormConta): Promise<IFormContaResponse> {
+    const { data } = await this.instance.post<IFormContaResponse>(`/conta`, conta);
+    console.log('criaConta', data)
+    return data;
+  }
+
+  getSaldo(): Promise<AxiosResponse> {
+    return this.instance.get(`/conta/saldo`);
+  }
+
+  extrato(form: IExtratoForm): Promise<AxiosResponse> {
+    return this.instance.post(`/conta/extrato`, form);
+  }
+
+  transferencia(form: ITransferenciaForm): Promise<AxiosResponse> {
+    return this.instance.post(`/conta/transferencia`, form);
+  }
+
+  deposito(form: IDepositoForm): Promise<AxiosResponse> {
+    return this.instance.post(`/conta/deposito`, form);
   }
 
 }

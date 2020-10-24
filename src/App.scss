@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: rgb(55, 58, 60) !important;
+  border-color: rgb(55, 58, 60) !important;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgb(55, 58, 60) !important;
+}
+
+.dropdown-menu {
+  right: 0 !important;
+  left: auto !important;
+}
+
+.btn-outline-warning:focus:hover:active {
+  color: rgb(255, 136, 50);
+  border-color: rgb(255, 136, 50);
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.regular-button {
+  color: #fff !important;
+  background-color: #FF8832 !important;
+  border-color: #FF8832 !important;
+  box-shadow: none;
+  &:hover {
+      color: #fff !important;
+      background-color: #FF8832 !important;
+      border-color: #FF8832 !important;
+      box-shadow: none;
+  }
+  &:focus {
+      box-shadow: none;
+  }
+  &:active {
+      box-shadow: none;
+  }
+}
+
+.regular-outline-button {
+  color: #FF8832 !important;
+  border-color: #FF8832 !important;
+  background-color: transparent !important;
+  box-shadow: none;
+  &:hover {
+      color: #FF8832 !important;
+      border-color: #FF8832 !important;
+      background-color: transparent !important;
+      box-shadow: none;
+  }
+  &:focus {
+      box-shadow: none;
+  }
+  &:active {
+      box-shadow: none;
+  }
+}
+
+.completed-table-container {
+  text-align: center;
+  padding: 10px 45px;
+}
