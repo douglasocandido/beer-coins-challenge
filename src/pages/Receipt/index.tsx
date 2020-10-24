@@ -29,7 +29,7 @@ export default function Receipt() {
       <NavbarComponent name="Douglas" />
       <Presentation title="Todos meus lançamentos" balance={9999.77} backToHome image={contentImage} />
       <div className="justify-content-center completed-table-container">
-        <ReceiptTable receiptData={receipts}/>
+        <ReceiptTable />
       </div>
     </>
   )

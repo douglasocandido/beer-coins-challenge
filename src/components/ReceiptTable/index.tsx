@@ -1,31 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { 
     Table
 } from 'react-bootstrap';
-import IReceiptData from '../../interfaces/IReceiptData'
+import { IExtrato, IExtratoForm } from '../../interfaces/Extrato';
+import { apiService } from '../../App';
 
 interface ReceiptTableProps {
-    receiptData: IReceiptData[];
+    tableSize?: number;
 }
 
-const ReceiptTableTable = ({ receiptData }: ReceiptTableProps) => {
+const ReceiptTableTable = ({ tableSize }: ReceiptTableProps) => {
+
+    const [operations, setOperations] = useState<IExtrato[]>([]);
+    const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: 'DEPOSITO' }
+
+    useEffect(() => {
+    (async () => {
+        const operationsData = await apiService.extrato(filters)
+        setOperations(operationsData)
+    } )()
+    },[])
 
     return (
         <>
-            <Table striped bordered hover className='text-align-right'>
+            <Table striped bordered hover className='text-align-left'>
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th>Valor</th>
                     <th>Data</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {receiptData.map((receipt: IReceiptData) => (
+                    {operations.map((receipt: IExtrato) => (
                         <tr>
-                            <td>{receipt.id}</td>
-                            <td>B$ {receipt.value}</td>
-                            <td>{receipt.operationDate.toDateString()}</td>
+                            <td>{receipt.dataHora}</td>
+                            <td>B$ {receipt.valor}</td>
                         </tr>
                         )
                     )}

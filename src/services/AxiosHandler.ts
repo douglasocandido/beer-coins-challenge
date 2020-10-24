@@ -68,8 +68,8 @@ export default class AxiosHandler implements IAPIHandler {
     return data.content;
   }
 
-  async extrato(page: number = 0, pageSize: number = 10): Promise<IExtrato[]> {
-    const { data } = await this.instance.get<IExtratoResponse>(`/conta/extrato?page=${page}&size=${pageSize}`);
+  async extrato(filters: IExtratoForm): Promise<IExtrato[]> {
+    const { data } = await this.instance.get<IExtratoResponse>(`/conta/extrato?page=${filters.page}&size=${filters.pageSize}`);
     return data.content;
   }
 

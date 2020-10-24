@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { 
     Table
 } from 'react-bootstrap';
-import { IExtrato } from '../../interfaces/Extrato';
+import { IExtrato, IExtratoForm } from '../../interfaces/Extrato';
+import { apiService } from '../../App';
 
 interface OperationsTableProps {
-    operationData: IExtrato[];
+    tableSize?: number;
 }
 
-const OperationsTable = ({ operationData }: OperationsTableProps) => {
+const OperationsTable = ({ tableSize=10 }: OperationsTableProps) => {
+
+    const [operations, setOperations] = useState<IExtrato[]>([]);
+    const filters: IExtratoForm = { page: 0, pageSize: tableSize }
+
+    useEffect(() => {
+    (async () => {
+        const operationsData = await apiService.extrato(filters)
+        setOperations(operationsData)
+    } )()
+    },[])
 
     return (
         <>
@@ -22,7 +33,7 @@ const OperationsTable = ({ operationData }: OperationsTableProps) => {
                 </tr>
                 </thead>
                 <tbody>
-                    {operationData.map((operation: IExtrato) => (
+                    {operations.map((operation: IExtrato) => (
                         <tr>
                             <td>{operation.dataHora}</td>
                             <td>{operation.nomeContaOrigemOuDestino}</td>

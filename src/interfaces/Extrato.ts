@@ -7,6 +7,8 @@ export interface IExtrato {
 
 export interface IExtratoForm {
   tipoOperacao?: string
+  pageSize?: number
+  page?: number
 }
 
 export interface IExtratoResponse {
