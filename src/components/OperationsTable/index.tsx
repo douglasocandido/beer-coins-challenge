@@ -19,7 +19,7 @@ const OperationsTable = ({ tableSize = 10 }: OperationsTableProps) => {
             const operationsData = await apiService.extrato(filters)
             setOperations(operationsData)
         })()
-    }, [])
+    }, [filters])
 
     return (
         <>
