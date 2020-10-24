@@ -8,27 +8,27 @@ import './style.scss'
 import { apiService } from '../../App';
 
 interface ModalTransferProps {
-  hash: string,
   handleClose: () => void
   show: boolean
 }
 
-function ModalTransfer({ hash: hashDaConta, handleClose, show}: ModalTransferProps) {
+function ModalTransfer({ handleClose, show }: ModalTransferProps) {
   const [validated, setValidated] = useState(false);
   const valorRef = useRef<HTMLInputElement | null>(null);
   const contaDestinoRef = useRef<HTMLInputElement | null>(null);
 
-  const handleTransferencia = (event: any) => {
+  const checkValidation = (event: any) => {
     event.preventDefault();
     event.stopPropagation();
     const form = event.currentTarget;
-    if (form.checkValidity()) {
-      transferencia();
-    }
-    setValidated(true);
-  };
 
-  const transferencia = () => {
+    setValidated(true);
+    if (form.checkValidity()) {
+      handleTransfer()
+    }
+  }
+
+  const handleTransfer = () => {
     const transferData = {
       contaDestino: contaDestinoRef?.current?.value!,
       valor: valorRef?.current?.value!
@@ -36,7 +36,10 @@ function ModalTransfer({ hash: hashDaConta, handleClose, show}: ModalTransferPro
     apiService.transferencia(transferData).then(response => {
       toast.success('Transferência realizada com sucesso!');
       handleClose();
-    }).catch(error => { console.error('transferencia', error) });
+    }).catch(error => {
+      console.error('transferencia', error)
+      toast.error('Algo está errado!');
+    });
   }
 
   return (
@@ -45,36 +48,38 @@ function ModalTransfer({ hash: hashDaConta, handleClose, show}: ModalTransferPro
         <Modal.Header className="transferHeader">
           <Modal.Title className="transferTitle">Realizar Transferência</Modal.Title>
         </Modal.Header>
-        <Modal.Body >
-          <Form noValidate validated={validated}>
-            <FormGroup>
+        <Form noValidate validated={validated} onSubmit={checkValidation}>
+          <Modal.Body >
+            <FormGroup className="form-group-transfer">
               <Form.Row className="transferForm">
-                <Col md={7} style={{ justifyContent: 'space-between', padding: '15px' }}>
+                <Col style={{ justifyContent: 'space-between', padding: '15px' }}>
                   <Form.Label style={{ fontSize: '15px' }}>Destinatário</Form.Label>
-                  <Form.Control size="sm" type="email" placeholder="email@dominio.com" ref={contaDestinoRef} />
+                  <Form.Control required type="text" placeholder="Hash do destinatário" ref={contaDestinoRef} />
+                  <Form.Control.Feedback type="invalid">
+                    Campo obrigatório
+                  </Form.Control.Feedback>
                 </Col>
-                <Col md={7} style={{ justifyContent: 'space-between', padding: '15px' }}>
+                <Col style={{ justifyContent: 'space-between', padding: '15px' }}>
                   <Form.Label style={{ fontSize: '15px' }}>Valor</Form.Label>
-                  <Form.Control size="sm" type="text" placeholder="B$" ref={valorRef} />
+                  <Form.Control required type="text" placeholder="B$" ref={valorRef} />
                   <Form.Control.Feedback type="invalid">
                     Campo obrigatório
                 </Form.Control.Feedback>
                 </Col>
               </Form.Row>
               <Form.Row>
-                <Col md={5}>
+                <Col >
                   <Image className="TransferImage" src={transfer} />
                 </Col>
               </Form.Row>
             </FormGroup>
-          </Form>
-        </Modal.Body>
-
-        <Modal.Footer style={{ justifyContent: 'space-between', padding: '0px' }}>
-          <Button className="regular-outline-button modal-transfer-button" variant="link" onClick={handleClose}>Cancelar</Button>
-          <Button className="regular-button modal-transfer-button" variant="warning" onClick={handleTransferencia}>Transferir</Button>
-          <ModalFooter />
-        </Modal.Footer>
+          </Modal.Body>
+          <Modal.Footer style={{ justifyContent: 'space-between', padding: '0px' }}>
+            <Button className="regular-outline-button modal-transfer-button" variant="link" onClick={handleClose}>Cancelar</Button>
+            <Button className="regular-button modal-transfer-button" type="submit" variant="warning">Transferir</Button>
+            <ModalFooter />
+          </Modal.Footer>
+        </Form>
       </Modal>
     </>
   );

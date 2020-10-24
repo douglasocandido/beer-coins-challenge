@@ -9,6 +9,7 @@ import {
 import './style.scss'
 import ModalTransfer from '../ModalTransfer'
 import HistoryRewards from '../../pages/Rewards/components/HistoryRewards'
+import { useAppState } from '../../AppContext';
 
 interface PresentationProps {
     title: string;
@@ -19,6 +20,7 @@ interface PresentationProps {
 }
 
 const Presentation = ({ title, balance, backToHome, isRewardsScreen, image }: PresentationProps) => {
+    const { user } = useAppState()
 
     const [isModalVisible, setModalVisible] = React.useState(false);
     const handleCloseModal = () => setModalVisible(false);
@@ -31,8 +33,8 @@ const Presentation = ({ title, balance, backToHome, isRewardsScreen, image }: Pr
                     <h1 className='presentation-title'>{title}</h1>
                     <Row>
                         <Col className='align-left'>
-                            <p className='presentation-subtitle'>Saldo em conta:</p>
-                            <p className='presentation-subtitle'>B$ {balance}</p>
+                            <p className='presentation-subtitle'>Saldo em conta: B$ {balance}</p>
+                            <p className="presentation-hash">{`seu hash: ${user.Hash}`} </p>
                         </Col>
                         {
                             !isRewardsScreen ?
@@ -56,7 +58,7 @@ const Presentation = ({ title, balance, backToHome, isRewardsScreen, image }: Pr
                 isRewardsScreen ?
                     <HistoryRewards handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
                     :
-                    <ModalTransfer hash={"sssss"} handleClose={handleCloseModal} show={isModalVisible} />
+                    <ModalTransfer handleClose={handleCloseModal} show={isModalVisible} />
             }
         </Jumbotron>
     )
