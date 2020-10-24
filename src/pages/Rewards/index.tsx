@@ -3,7 +3,6 @@ import Presentation from '../../components/Presentation/index';
 import NavbarComponent from '../../components/NavbarComponent';
 import {
     Row,
-    Button,
     Col,
 } from 'react-bootstrap';
 import contentImage from '../../assets/images/rewards.svg';
@@ -21,13 +20,13 @@ export default function Rewards() {
             <Presentation isRewardsScreen={true} title="Rewards" balance={9999.77} image={contentImage} />
             <Row className='client-container'>
                 <Col xs={6} md={4}>
-                    <Card title='Colorado do leme ao pontal' price={9020} description=' A refrescancia já é uma caracteristica do estilo Summer Ale' imageUrl={imageUrl} />
+                    <Card title='Colorado do Leme ao Pontal' price={9020} description=' A refrescancia já é uma caracteristica do estilo Summer Ale' imageUrl={imageUrl} />
                 </Col>
                 <Col xs={6} md={4}>
-                    <Card title='Colorado do leme ao pontal' price={9020} description=' A refrescancia já é uma caracteristica do estilo Summer Ale' imageUrl={imageUrl} />
+                    <Card title='Colorado do Leme ao Pontal' price={9020} description=' A refrescancia já é uma caracteristica do estilo Summer Ale' imageUrl={imageUrl} />
                 </Col>
                 <Col xs={6} md={4}>
-                    <Card title='Colorado do leme ao pontal' price={9020} description=' A refrescancia já é uma caracteristica do estilo Summer Ale' imageUrl={imageUrl} />
+                    <Card title='Colorado do Leme ao Pontal' price={9020} description=' A refrescancia já é uma caracteristica do estilo Summer Ale' imageUrl={imageUrl} />
                 </Col>
             </Row>
         </>
