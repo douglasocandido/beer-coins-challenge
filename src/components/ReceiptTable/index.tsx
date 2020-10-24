@@ -15,11 +15,11 @@ const ReceiptTableTable = ({ tableSize=10 }: ReceiptTableProps) => {
     const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: 'DEPOSITO' }
 
     useEffect(() => {
-    (async () => {
+      (async () => {
         const operationsData = await apiService.extrato(filters)
         setOperations(operationsData)
-    } )()
-    },[])
+      })()
+    }, [filters]);
 
     return (
         <>

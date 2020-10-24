@@ -2,7 +2,6 @@ import React from 'react';
 import NavbarComponent from '../../components/NavbarComponent';
 import Presentation from '../../components/Presentation';
 import ReceiptTable from '../../components/ReceiptTable';
-import IReceiptData from '../../interfaces/IReceiptData';
 import contentImage from '../../assets/images/receipt.svg';
 
 export default function Receipt() {

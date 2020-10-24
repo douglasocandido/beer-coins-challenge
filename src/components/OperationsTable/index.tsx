@@ -15,11 +15,11 @@ const OperationsTable = ({ tableSize=10 }: OperationsTableProps) => {
     const filters: IExtratoForm = { page: 0, pageSize: tableSize }
 
     useEffect(() => {
-    (async () => {
+      (async () => {
         const operationsData = await apiService.extrato(filters)
         setOperations(operationsData)
-    } )()
-    },[])
+      })()
+    }, [filters]);
 
     return (
         <>
