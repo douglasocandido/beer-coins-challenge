@@ -16,7 +16,7 @@ const imageUrl = 'https://emporiodacerveja.vtexassets.com/arquivos/ids/178169-80
 export default function Rewards() {
     return (
         <>
-            <NavbarComponent name="Douglas" />
+            <NavbarComponent />
             <Presentation isRewardsScreen={true} title="Rewards" balance={9999.77} image={contentImage} />
             <Row className='client-container'>
                 <Col xs={6} md={4}>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { 
+import {
     Table
 } from 'react-bootstrap';
 import { IExtrato, IExtratoForm } from '../../interfaces/Extrato';
@@ -10,7 +10,7 @@ interface OperationsTableProps {
     tableSize?: number;
 }
 
-const OperationsTable = ({ tableSize=10 }: OperationsTableProps) => {
+const OperationsTable = ({ tableSize = 10 }: OperationsTableProps) => {
 
     const [operations, setOperations] = useState<IExtrato[]>([]);
     const [emptyTable, setEmptyTable] = useState(true);
@@ -18,26 +18,26 @@ const OperationsTable = ({ tableSize=10 }: OperationsTableProps) => {
     const formatDate = new FormatDate()
 
     useEffect(() => {
-    (async () => {
-        const operationsData = await apiService.extrato(filters)
-        setOperations(operationsData)
+        (async () => {
+          const operationsData = await apiService.extrato(filters)
+          setOperations(operationsData)
 
-        if(operationsData.length > 0) {
+          if(operationsData.length > 0) {
             setEmptyTable(false)
-        }
-    } )()
-    },[])
+          }
+        })()
+    }, [filters])
 
     return (
         <>
             <Table striped bordered hover className='text-align-left'>
                 <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Beneficiário</th>
-                    <th>Valor</th>
-                    <th>Tipo</th>
-                </tr>
+                    <tr>
+                        <th>Data</th>
+                        <th>Beneficiário</th>
+                        <th>Valor</th>
+                        <th>Tipo</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {operations.map((operation: IExtrato) => (
@@ -47,7 +47,7 @@ const OperationsTable = ({ tableSize=10 }: OperationsTableProps) => {
                             <td>B$ {operation.valor}</td>
                             <td>{operation.tipo}</td>
                         </tr>
-                        )
+                    )
                     )}
                 </tbody>
             </Table>

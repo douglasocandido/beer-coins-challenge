@@ -18,15 +18,15 @@ const ReceiptTableTable = ({ tableSize=10 }: ReceiptTableProps) => {
     const formatDate = new FormatDate()
 
     useEffect(() => {
-    (async () => {
+      (async () => {
         const operationsData = await apiService.extrato(filters)
         setOperations(operationsData)
-
+        
         if(operationsData.length > 0) {
             setEmptyTable(false)
         }
-    } )()
-    },[])
+      })()
+    }, [filters]);
 
     return (
         <>

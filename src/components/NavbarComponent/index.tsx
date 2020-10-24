@@ -10,10 +10,9 @@ import BeerTechLogo from "../../assets/images/beer-tech-logo.png";
 import './style.scss';
 import { TokenService } from "../../services/TokenService"
 import { useHistory } from 'react-router-dom';
+import { useAppState } from '../../AppContext';
 
-interface NavbarComponentProps {
-    name: string
-}
+
 
 const handleLogout = () => {
     const tokenService = new TokenService(window.localStorage);
@@ -22,11 +21,12 @@ const handleLogout = () => {
 }
 
 
-const NavbarComponent = ({ name }: NavbarComponentProps) => {
+const NavbarComponent = () => {
     const history = useHistory();
     const handleRedirect = () => {
         history.push('/rewards')
     }
+    const { user } = useAppState()
     return (
         <Navbar className='navbar-container'>
             <Navbar.Brand href="/" className='navbar-title'>
@@ -41,7 +41,7 @@ const NavbarComponent = ({ name }: NavbarComponentProps) => {
                 <img alt="" src={BeerTechLogo} width="50" height="50" className="d-inline-block align-top navbar-beer-tech-logo" />
                 <Navbar.Text className='beer-tech-logo-margin'>
                     <ButtonGroup vertical>
-                        <DropdownButton as={ButtonGroup} title={name} id="bg-vertical-dropdown-3">
+                        <DropdownButton as={ButtonGroup} title={user.Nome} id="bg-vertical-dropdown-3">
                             <Dropdown.Item onClick={handleLogout} eventKey="1">Logout</Dropdown.Item>
                             <Dropdown.Item onClick={handleRedirect} eventKey="1">Rewards</Dropdown.Item>
                         </DropdownButton>

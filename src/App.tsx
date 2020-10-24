@@ -1,5 +1,7 @@
 
 import React, { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+
 import "./App.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -69,6 +71,7 @@ function App() {
           <Route path="/rewards" component={Rewards} />
           <Route path="*" component={Error} />
         </Switch>
+        <ToastContainer />
       </Router>
     </div>
   );

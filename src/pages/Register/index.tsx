@@ -1,15 +1,20 @@
 import React, { useState, useRef } from 'react';
-import { Button, Form, Modal } from "react-bootstrap"
+import { toast } from 'react-toastify';
+
+import { Button, Form, Modal, Spinner } from "react-bootstrap"
 import ModalFooter from "../../components/ModalFooter"
 
+import { apiService } from '../../App';
+import './style.scss'
+
 interface RegisterProps {
-  handleShow: () => void,
   handleClose: () => void,
   show: boolean
 }
 
-export default function Register({ handleShow, handleClose, show }: RegisterProps) {
+export default function Register({ handleClose, show }: RegisterProps) {
   const [validated, setValidated] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   const userNameRef = useRef<HTMLInputElement | null>(null)
   const userPasswordRef = useRef<HTMLInputElement | null>(null)
@@ -18,32 +23,39 @@ export default function Register({ handleShow, handleClose, show }: RegisterProp
 
 
   const handleRegister = (event: any) => {
+    event.preventDefault();
+    event.stopPropagation();
     const form = event.currentTarget;
-
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+    if (form.checkValidity()) {
+      criaConta();
     }
-
     setValidated(true);
+  }
+
+  const criaConta = () => {
+    setLoading(true);
     const createAccountObject = {
       cnpj: userCNPJRef?.current?.value!,
       email: userEmailRef?.current?.value!,
       nome: userNameRef?.current?.value!,
       senha: userPasswordRef?.current?.value!
     }
-    console.log(createAccountObject)
-  }
-
-  const handleCancel = () => {
-    handleClose()
+    apiService.criaConta(createAccountObject)
+      .then(response => {
+        setLoading(false);
+        handleClose();
+        window.location.reload();
+      }).catch(error => {
+        setLoading(false);
+        toast.error('Ooops algo de errado não está certo. Tente novamente mais tarde');
+      });
   }
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={() => { !loading && handleClose(); }}>
         <Modal.Header closeButton>
-          <Modal.Title>Cadastre-se</Modal.Title>
+          <Modal.Title>Criar conta</Modal.Title>
         </Modal.Header>
         <Form noValidate validated={validated} onSubmit={handleRegister}>
           <Modal.Body>
@@ -77,8 +89,17 @@ export default function Register({ handleShow, handleClose, show }: RegisterProp
             </Form.Group>
           </Modal.Body>
           <Modal.Footer style={{ justifyContent: 'space-between' }}>
-            <Button className="regular-outline-button" variant="outline-warning" onClick={handleCancel}>Cancelar</Button>
-            <Button className="regular-button" variant="warning" type="submit">Cadastrar</Button>
+            <Button className="regular-outline-button" variant="outline-warning" onClick={handleClose}>Cancelar</Button>
+            <Button className="regular-button cadastrar-button" variant="warning" type="submit">
+              { loading ?
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                /> : 'Cadastrar' }
+            </Button>
             <ModalFooter />
           </Modal.Footer>
         </Form>
