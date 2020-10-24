@@ -2,9 +2,9 @@ import React, { useState, useEffect, useCallback } from "react";
 import { toast } from 'react-toastify';
 import { Spinner, Table } from "react-bootstrap"
 
-import { IConta } from '../interfaces/Conta'
-import Popover from './Popover'
-import { apiService } from '../App';
+import { IConta } from '../../interfaces/Conta'
+import Popover from '../Popover'
+import { apiService } from '../../App';
 
 interface AdminTableProps {
   tableTitle: string;
