@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Presentation from '../../components/Presentation';
 import CarouselComponent from "../../components/Carousel/index"
 import NavbarComponent from '../../components/NavbarComponent';
