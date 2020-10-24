@@ -9,7 +9,7 @@ export default function Operations() {
   return (
     <>
       <NavbarComponent />
-      <Presentation title="Extrato completo" balance={9999.77} backToHome image={contentImage} />
+      <Presentation title="Extrato completo" backToHome image={contentImage} />
       <div className="justify-content-center completed-table-container">
         <OperationsTable />
       </div>
