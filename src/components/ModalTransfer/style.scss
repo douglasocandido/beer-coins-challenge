@@ -6,6 +6,10 @@
     border-top-right-radius: calc(.3rem - 1px);
 }
 
+.modal-content{
+  width: 590px
+}
+
 .transfer{
     width: 120px;
     height: 80px;
@@ -37,12 +41,24 @@
     justify-content: space-between;
  }
 
- .modal-transfer-button {
-   margin: 20px;
+ .button-cancel {
+    border: none;
+    color: #D80202 !important
+
+   
+ }.button-cancel:hover{
+  color: #D80202 !important
  }
-  
+
+ .button-transfer{
+  padding: 10px 50px 10px 50px
+
+ }
+
 .TransferImage{
-  width: 200px;
+  padding-top: 20px;
+  padding-left: 20px;
+  width: 250px;
   float: right
   
 }
@@ -50,7 +66,9 @@
 .transferTitle{
   text-align: center; 
   margin: 20px;
-  font-size: 26px
+  margin-top: 40px;
+  font-size: 30px;
+  font-family: 'Roboto'
 }
 
 .transferForm {
@@ -59,5 +77,19 @@
 }
 
 .transferHeader{
-  margin-left: '15px'
+  margin-left: '15px';
+  border: none
+}
+
+.transferAlign{
+  display: flex;
+
+}
+
+.footer{
+  margin-top: 20px;
+}
+
+.transferFormulario{
+
 }

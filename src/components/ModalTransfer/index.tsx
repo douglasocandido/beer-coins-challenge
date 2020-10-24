@@ -47,34 +47,41 @@ function ModalTransfer({ hash: hashDaConta, handleClose, show}: ModalTransferPro
         </Modal.Header>
         <Modal.Body >
           <Form noValidate validated={validated}>
-            <FormGroup>
+            <FormGroup className= "transferAlign">
+              <div>
               <Form.Row className="transferForm">
-                <Col md={7} style={{ justifyContent: 'space-between', padding: '15px' }}>
-                  <Form.Label style={{ fontSize: '15px' }}>Destinatário</Form.Label>
+                <Col md={12} style={{ justifyContent: 'space-between', padding: '15px' }}>
+                  <Form.Label className="tranferFormulario"> <strong>Destinatário</strong></Form.Label>
                   <Form.Control size="sm" type="email" placeholder="email@dominio.com" ref={contaDestinoRef} />
                 </Col>
-                <Col md={7} style={{ justifyContent: 'space-between', padding: '15px' }}>
-                  <Form.Label style={{ fontSize: '15px' }}>Valor</Form.Label>
+                <Col md={12} style={{ justifyContent: 'space-between', padding: '15px' }}>
+                  <Form.Label className="tranferFormulario"><strong>Valor</strong></Form.Label>
                   <Form.Control size="sm" type="text" placeholder="B$" ref={valorRef} />
                   <Form.Control.Feedback type="invalid">
                     Campo obrigatório
                 </Form.Control.Feedback>
                 </Col>
               </Form.Row>
-              <Form.Row>
-                <Col md={5}>
+              </div>
+              <div>
+                <Col md={12}>
                   <Image className="TransferImage" src={transfer} />
                 </Col>
-              </Form.Row>
+              </div>
             </FormGroup>
+            <div>
+              <Button className="regular-outline-button button-cancel" variant="link" onClick={handleClose}>Cancelar</Button>
+              <Button className="regular-button button-transfer" variant="warning" onClick={handleTransferencia}>Transferir</Button>
+            </div>
           </Form>
         </Modal.Body>
 
-        <Modal.Footer style={{ justifyContent: 'space-between', padding: '0px' }}>
-          <Button className="regular-outline-button modal-transfer-button" variant="link" onClick={handleClose}>Cancelar</Button>
-          <Button className="regular-button modal-transfer-button" variant="warning" onClick={handleTransferencia}>Transferir</Button>
+         
+          <div className="footer">
           <ModalFooter />
-        </Modal.Footer>
+          </div>
+         
+        
       </Modal>
     </>
   );
