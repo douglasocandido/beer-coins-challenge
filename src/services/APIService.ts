@@ -1,4 +1,5 @@
 import { IConta, IFormConta, IFormContaResponse } from "../interfaces/Conta";
+import { IExtrato, IExtratoForm } from "../interfaces/Extrato";
 import IAPIHandler from "../interfaces/IAPIHandler";
 import { ITokenData } from "../interfaces/Token";
 
@@ -13,6 +14,10 @@ export default class APIService {
 
   listaContas(): Promise<IConta[]> {
     return this.apiAccess.listaContas();
+  }
+
+  extrato(filters: IExtratoForm): Promise<IExtrato[]> {
+    return this.apiAccess.extrato(filters);
   }
 
   criaConta(conta: IFormConta): Promise<IFormContaResponse> {

@@ -5,7 +5,7 @@ import { IConta, IContaResponse, IFormConta, IFormContaResponse } from "../inter
 import { TokenService } from "./TokenService";
 import { IDepositoForm } from "../interfaces/Deposito";
 import { ITransferenciaForm } from "../interfaces/Transferencia";
-import { IExtratoForm } from "../interfaces/Extrato";
+import { IExtratoForm, IExtrato, IExtratoResponse } from "../interfaces/Extrato";
 
 export default class AxiosHandler implements IAPIHandler {
   private instance: AxiosInstance;
@@ -68,6 +68,11 @@ export default class AxiosHandler implements IAPIHandler {
     return data.content;
   }
 
+  async extrato(filters: IExtratoForm): Promise<IExtrato[]> {
+    const { data } = await this.instance.get<IExtratoResponse>(`/conta/extrato?page=${filters.page}&size=${filters.pageSize}`);
+    return data.content;
+  }
+
   async criaConta(conta: IFormConta): Promise<IFormContaResponse> {
     const { data } = await this.instance.post<IFormContaResponse>(`/conta`, conta);
     console.log('criaConta', data)
@@ -76,10 +81,6 @@ export default class AxiosHandler implements IAPIHandler {
 
   getSaldo(): Promise<AxiosResponse> {
     return this.instance.get(`/conta/saldo`);
-  }
-
-  extrato(form: IExtratoForm): Promise<AxiosResponse> {
-    return this.instance.post(`/conta/extrato`, form);
   }
 
   transferencia(form: ITransferenciaForm): Promise<AxiosResponse> {
