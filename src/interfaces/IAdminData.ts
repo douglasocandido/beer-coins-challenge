@@ -1,7 +1,8 @@
 export default interface IAdminData {
+    id: string;
     name: string;
-    lastname: string;
     email: string;
     cnpj: number;
+    value: number;
     action: string;
 }

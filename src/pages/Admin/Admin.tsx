@@ -5,7 +5,6 @@ import { Button, Spinner } from "react-bootstrap"
 import { IConta } from '../../interfaces/Conta'
 import NavbarComponent from '../../components/NavbarComponent'
 import AdminTable from '../../components/AdminTable'
-import "./style.scss"
 import Register from "../Register"
 import { apiService } from '../../App';
 

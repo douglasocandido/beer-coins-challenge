@@ -23,7 +23,6 @@ const Presentation = ({ title, balance, backToHome, isRewardsScreen, image }: Pr
     const handleCloseModal = () => setModalVisible(false);
     const handleOpenModal = () => setModalVisible(true);
 
-
     return (
         <Jumbotron className='presentation-container'>
             <Row>
