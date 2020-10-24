@@ -24,11 +24,11 @@ export default function Client() {
         <Col>
           <Row className="justify-content-center resumed-table" style={{ marginBottom: '20px' }}>
             <h2>Últimos lançamentos</h2>
-            <ReceiptTable tableSize={3} />
+            <ReceiptTable tableSize={3} isClientDashboard />
           </Row>
-          <Row className="justify-content-center resumed-table" style={{ marginBottom: '20px' }}>
-            <h2>Extrato</h2>
-            <OperationsTable tableSize={3} />
+          <Row className="justify-content-center resumed-table">
+            <h2>Resumo do Extrato</h2>
+            <OperationsTable tableSize={3} isClientDashboard />
           </Row>
         </Col>
         <Col className='rewards-preview-container'>
