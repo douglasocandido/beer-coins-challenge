@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {
     Jumbotron,
     Button,
@@ -7,7 +7,7 @@ import {
     Image
 } from 'react-bootstrap';
 import './style.scss'
-import ModalTransfer from '../Transfer/ModalTransfer'
+import ModalTransfer from '../ModalTransfer/ModalTransfer'
 
 interface PresentationProps {
     title: string;
@@ -36,7 +36,7 @@ const Presentation = ({ title, balance, backToHome, image }: PresentationProps) 
                             <p className='presentation-subtitle'>B$ {balance}</p>
                         </Col>
                         <Col className='align-center'>
-                            <p><Button className='regular-button' variant="warning" onClick={handleOpenModal}>Transferir222</Button></p>
+                            <p><Button className='regular-button' variant="warning" onClick={handleOpenModal}>Transferir</Button></p>
                             {backToHome ? <p><Button className='regular-outline-button' variant="outline-warning" href="/">Voltar</Button></p> : null}
                         </Col>
                     </Row>
