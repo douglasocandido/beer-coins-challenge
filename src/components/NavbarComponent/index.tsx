@@ -9,6 +9,7 @@ import logo from "../../assets/images/logo.svg";
 import BeerTechLogo from "../../assets/images/beer-tech-logo.png";
 import './style.scss';
 import { TokenService } from "../../services/TokenService"
+import { useHistory } from 'react-router-dom';
 
 interface NavbarComponentProps {
     name: string
@@ -20,7 +21,12 @@ const handleLogout = () => {
     window.location.reload()
 }
 
+
 const NavbarComponent = ({ name }: NavbarComponentProps) => {
+    const history = useHistory();
+    const handleRedirect = () => {
+        history.push('/rewards')
+    }
     return (
         <Navbar className='navbar-container'>
             <Navbar.Brand href="/" className='navbar-title'>
@@ -37,6 +43,7 @@ const NavbarComponent = ({ name }: NavbarComponentProps) => {
                     <ButtonGroup vertical>
                         <DropdownButton as={ButtonGroup} title={name} id="bg-vertical-dropdown-3">
                             <Dropdown.Item onClick={handleLogout} eventKey="1">Logout</Dropdown.Item>
+                            <Dropdown.Item onClick={handleRedirect} eventKey="1">Rewards</Dropdown.Item>
                         </DropdownButton>
                     </ButtonGroup>
                 </Navbar.Text>
