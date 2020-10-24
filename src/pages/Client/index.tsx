@@ -13,24 +13,6 @@ import IReceiptData from '../../interfaces/IReceiptData';
 import contentImage from '../../assets/images/client.svg';
 import './style.scss'
 
-const receipts: IReceiptData[] = [
-  {
-    id: '23145656',
-    value: 200,
-    operationDate: new Date()
-  },
-  {
-    id: '2342344',
-    value: 500,
-    operationDate: new Date()
-  },
-  {
-    id: '7907890',
-    value: 1000,
-    operationDate: new Date()
-  }
-];
-
 export default function Client() {
   return (
     <>

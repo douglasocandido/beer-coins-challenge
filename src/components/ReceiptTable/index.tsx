@@ -9,7 +9,7 @@ interface ReceiptTableProps {
     tableSize?: number;
 }
 
-const ReceiptTableTable = ({ tableSize }: ReceiptTableProps) => {
+const ReceiptTableTable = ({ tableSize=10 }: ReceiptTableProps) => {
 
     const [operations, setOperations] = useState<IExtrato[]>([]);
     const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: 'DEPOSITO' }
