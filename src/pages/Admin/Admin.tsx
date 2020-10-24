@@ -1,8 +1,11 @@
-import React  from "react";
+import React, { useState }  from "react";
 import NavbarComponent from '../../components/NavbarComponent'
+import { Button } from "react-bootstrap"
 import AdminTable from '../../components/AdminTable'
 import IAdminData from '../../interfaces/IAdminData'
 import "./style.scss"
+
+import Register from "../Register"
 
 const admins: IAdminData[] = [
   {
@@ -72,18 +75,22 @@ const admins: IAdminData[] = [
 
 
 export default function Admin() {
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const handleCloseModal = () => setModalVisible(false);
+  const handleOpenModal = () => setModalVisible(true);
+
   return (
     <>
-    
       <NavbarComponent name="Douglas"/>
-      <div>
-          <h1 className="title-admin">
-            BeerCoins Administrador
-          </h1>
-      </div>
-      <div className="justify-content-center" style={{ textAlign: 'left', padding: '10px 250px 10px 45px' }}>
+        <h1 className="title-admin">
+          BeerCoins Administrador
+        </h1>
+      <section className="justify-content-center contas-wrapper">
+        <Button onClick={handleOpenModal} className="regular-button criar-conta-btn" type="button" variant="warning">Criar Conta</Button>
         <AdminTable tableTitle='Contas' adminData={admins}/>
-      </div>
+      </section>
+      <Register handleClose={handleCloseModal} show={isModalVisible} />
     </>
   )
 }
