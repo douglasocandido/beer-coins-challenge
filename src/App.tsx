@@ -8,7 +8,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import Admin from './pages/Admin';
+import Admin from './pages/Admin/Admin';
 import Client from './pages/Client';
 import Login from './pages/Login';
 import Operations from './pages/Operations';

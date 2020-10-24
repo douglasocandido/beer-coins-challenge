@@ -23,7 +23,7 @@ const receipts: IReceiptData[] = [
   }
 ];
 
-export default function Operations() {
+export default function Receipt() {
   return (
     <>
       <NavbarComponent name="Douglas" />
@@ -33,4 +33,5 @@ export default function Operations() {
       </div>
     </>
   )
+
 }
