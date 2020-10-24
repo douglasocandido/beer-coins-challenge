@@ -3,17 +3,15 @@ import { useHistory } from 'react-router-dom';
 
 import videoSample from "../../assets/videos/tap-beer.mp4";
 import { Button, Form } from "react-bootstrap"
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import "./style.scss"
-import Register from "../Register"
 
 import { apiService } from '../../App';
 import { useAppDispatch } from '../../AppContext';
 
 export default function Login() {
-  const [isModalVisible, setModalVisible] = useState(false);
   const [validated, setValidated] = useState(false);
 
   const emailRef = useRef<HTMLInputElement | null>(null)
@@ -53,10 +51,6 @@ export default function Login() {
         })
   }
 
-
-  const handleCloseModal = () => setModalVisible(false);
-  const handleOpenModal = () => setModalVisible(true);
-
   return (
     <>
       <video muted autoPlay loop id="Opening beer video" className="welcome-video">
@@ -87,9 +81,6 @@ export default function Login() {
           </div>
         </Form>
       </div>
-      <Register handleClose={handleCloseModal} handleShow={handleOpenModal} show={isModalVisible} />
-      <ToastContainer />
-
     </>
   )
 }

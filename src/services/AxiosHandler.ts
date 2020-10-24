@@ -70,7 +70,6 @@ export default class AxiosHandler implements IAPIHandler {
 
   async criaConta(conta: IFormConta): Promise<IFormContaResponse> {
     const { data } = await this.instance.post<IFormContaResponse>(`/conta`, conta);
-    console.log('criaConta', data)
     return data;
   }
 
