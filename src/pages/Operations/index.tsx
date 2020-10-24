@@ -8,8 +8,8 @@ export default function Operations() {
 
   return (
     <>
-      <NavbarComponent name="Douglas" />
-      <Presentation title="Extrato completo" balance={9999.77} backToHome  image={contentImage}/>
+      <NavbarComponent />
+      <Presentation title="Extrato completo" balance={9999.77} backToHome image={contentImage} />
       <div className="justify-content-center completed-table-container">
         <OperationsTable />
       </div>

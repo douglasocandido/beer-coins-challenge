@@ -1,4 +1,5 @@
 import React, { useState }  from "react";
+
 import NavbarComponent from '../../components/NavbarComponent'
 import { Button } from "react-bootstrap"
 import AdminTable from '../../components/AdminTable'
@@ -12,64 +13,64 @@ const admins: IAdminData[] = [
     name: "Jose",
     lastname: "Carvalho",
     email: "jcarvalho@hotmail.com",
-    cnpj: 10209288000189, 
+    cnpj: 10209288000189,
     action: "depósito"
   },
   {
     name: "Joao",
     lastname: "Madeira",
     email: "joao.m@gmail.com",
-    cnpj: 10207283000199, 
+    cnpj: 10207283000199,
     action: "depósito"
   },
   {
     name: "Paulo",
     lastname: "Borges",
     email: "pborges@gmail.com",
-    cnpj: 10509788000159, 
-    action: "depósito"  
+    cnpj: 10509788000159,
+    action: "depósito"
   },
   {
     name: "Jose",
     lastname: "Carvalho",
     email: "jcarvalho@hotmail.com",
-    cnpj: 10209288000189, 
+    cnpj: 10209288000189,
     action: "depósito"
   },
   {
     name: "Joao",
     lastname: "Madeira",
     email: "joao.m@gmail.com",
-    cnpj: 10207283000199, 
+    cnpj: 10207283000199,
     action: "depósito"
   },
   {
     name: "Paulo",
     lastname: "Borges",
     email: "pborges@gmail.com",
-    cnpj: 10509788000159, 
-    action: "depósito"  
+    cnpj: 10509788000159,
+    action: "depósito"
   },
   {
     name: "Jose",
     lastname: "Carvalho",
     email: "jcarvalho@hotmail.com",
-    cnpj: 10209288000189, 
+    cnpj: 10209288000189,
     action: "depósito"
   },
   {
     name: "Joao",
     lastname: "Madeira",
     email: "joao.m@gmail.com",
-    cnpj: 10207283000199, 
+    cnpj: 10207283000199,
     action: "depósito"
   },
   {
     name: "Paulo",
     lastname: "Borges",
     email: "pborges@gmail.com",
-    cnpj: 10509788000159, 
-    action: "depósito"  
+    cnpj: 10509788000159,
+    action: "depósito"
   }
 ];
 
@@ -82,13 +83,13 @@ export default function Admin() {
 
   return (
     <>
-      <NavbarComponent name="Douglas"/>
-        <h1 className="title-admin">
-          BeerCoins Administrador
-        </h1>
+      <NavbarComponent />
+      <h1 className="title-admin">
+        BeerCoins Administrador
+      </h1>
       <section className="justify-content-center contas-wrapper">
         <Button onClick={handleOpenModal} className="regular-button criar-conta-btn" type="button" variant="warning">Criar Conta</Button>
-        <AdminTable tableTitle='Contas' adminData={admins}/>
+        <AdminTable tableTitle='Contas' adminData={admins} />
       </section>
       <Register handleClose={handleCloseModal} show={isModalVisible} />
     </>
