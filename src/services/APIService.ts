@@ -3,6 +3,7 @@ import { IConta, IFormConta, IFormContaResponse } from "../interfaces/Conta";
 import { IDepositoForm } from "../interfaces/Deposito";
 import { IExtrato, IExtratoForm } from "../interfaces/Extrato";
 import IAPIHandler from "../interfaces/IAPIHandler";
+import { ISaldo } from "../interfaces/Saldo";
 import { ITokenData } from "../interfaces/Token";
 
 export default class APIService {
@@ -28,5 +29,9 @@ export default class APIService {
 
   deposito(form: IDepositoForm): Promise<AxiosResponse> {
     return this.apiAccess.deposito(form);
+  }
+
+  getSaldo(): Promise<ISaldo> {
+    return this.apiAccess.getSaldo();
   }
 }
