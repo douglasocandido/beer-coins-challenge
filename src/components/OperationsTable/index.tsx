@@ -2,19 +2,17 @@ import React from "react";
 import { 
     Table
 } from 'react-bootstrap';
-import IOperationData from '../interfaces/IOperationData'
+import IOperationData from '../../interfaces/IOperationData'
 
 interface OperationsTableProps {
-    tableTitle: string;
     operationData: IOperationData[];
 }
 
-const OperationsTable = ({ tableTitle, operationData }: OperationsTableProps) => {
+const OperationsTable = ({ operationData }: OperationsTableProps) => {
 
     return (
         <>
-            <h2>{tableTitle}</h2>
-            <Table striped bordered hover style={{ textAlign: 'left' }}>
+            <Table striped bordered hover className='text-align-right'>
                 <thead>
                 <tr>
                     <th>#</th>

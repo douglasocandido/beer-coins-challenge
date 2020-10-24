@@ -2,19 +2,17 @@ import React from "react";
 import { 
     Table
 } from 'react-bootstrap';
-import IReceiptData from '../interfaces/IReceiptData'
+import IReceiptData from '../../interfaces/IReceiptData'
 
 interface ReceiptTableProps {
-    tableTitle: string;
     receiptData: IReceiptData[];
 }
 
-const ReceiptTableTable = ({ tableTitle, receiptData }: ReceiptTableProps) => {
+const ReceiptTableTable = ({ receiptData }: ReceiptTableProps) => {
 
     return (
         <>
-            <h2>{tableTitle}</h2>
-            <Table striped bordered hover style={{ textAlign: 'left' }}>
+            <Table striped bordered hover className='text-align-right'>
                 <thead>
                 <tr>
                     <th>#</th>

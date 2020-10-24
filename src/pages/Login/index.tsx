@@ -1,11 +1,12 @@
-import React, { CSSProperties, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import videoSample from "../../assets/videos/tap-beer.mp4";
 import { Button, Form } from "react-bootstrap"
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import "./styles.css"
+import "./style.scss"
 import Register from "../Register"
 
 import { apiService } from '../../App';
@@ -18,6 +19,7 @@ export default function Login() {
   const emailRef = useRef<HTMLInputElement | null>(null)
   const passwordRef = useRef<HTMLInputElement | null>(null)
 
+  const history = useHistory();
   const [dispatch] = useAppDispatch();
   const notify = (type: string) => {
     let message;
@@ -30,44 +32,30 @@ export default function Login() {
   }
 
   function handleLogin(event: any) {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
     }
-
     setValidated(true);
-
-    notify('loading');
-    dispatch({
-      type: 'REQUEST_LOGIN'
-    })
-    event.preventDefault();
-    apiService.login(emailRef?.current?.value!, passwordRef?.current?.value!)
-      .then((user) => {
-        dispatch({
-          type: 'SET_USER',
-          user
+    validated &&
+      apiService.login(emailRef?.current?.value!, passwordRef?.current?.value!)
+        .then((user) => {
+          dispatch({
+            type: 'SET_USER',
+            user
+          })
+          notify('success');
+          history.push('/')
         })
-        notify('success');
-      })
-      .catch(() => {
-        notify('failed');
-      })
+        .catch(() => {
+          notify('failed');
+        })
   }
 
 
   const handleCloseModal = () => setModalVisible(false);
   const handleOpenModal = () => setModalVisible(true);
-
-  const buttonStyle: CSSProperties = {
-    color: '#fff',
-    fontWeight: 'bold',
-    backgroundColor: '#FF8832',
-    borderColor: '#FF8832',
-    width: '50%',
-    height: '50px'
-  }
 
   return (
     <>
@@ -95,14 +83,7 @@ export default function Login() {
             </Form.Control.Feedback>
           </Form.Group>
           <div className="login-action-wrapper">
-            <Button style={buttonStyle} type="submit" variant="warning">Entrar</Button>
-
-            <Form.Text className="text-muted login-cadastro">
-              Ainda não tem uma conta?
-              <p style={{ fontWeight: 700, cursor: 'pointer' }} onClick={handleOpenModal}>
-                Cadastre-se
-              </p>
-            </Form.Text>
+            <Button className="regular-button login-btn" type="submit" variant="warning">Entrar</Button>
           </div>
         </Form>
       </div>
