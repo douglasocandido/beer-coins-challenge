@@ -5,7 +5,6 @@ import NavbarComponent from '../../components/NavbarComponent';
 import {
   Row,
   Col,
-  Button
 } from 'react-bootstrap';
 import { useAppState } from '../../AppContext';
 
@@ -22,7 +21,7 @@ export default function Client() {
       <NavbarComponent />
       <Presentation title={`Olá, ${user.Nome}`} balance={9999.77} image={contentImage} />
       <Row className='client-container'>
-        <Col xs={6}>
+        <Col>
           <Row className="justify-content-center resumed-table" style={{ marginBottom: '20px' }}>
             <h2>Últimos lançamentos</h2>
             <ReceiptTable tableSize={3} />
