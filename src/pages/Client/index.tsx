@@ -10,7 +10,7 @@ import {
 import ReceiptTable from '../../components/ReceiptTable';
 import OperationsTable from '../../components/OperationsTable';
 import contentImage from '../../assets/images/client.svg';
-import './style.scss'
+import './style.scss';
 
 export default function Client() {
   return (
@@ -19,12 +19,12 @@ export default function Client() {
       <Presentation title="Olá, Douglas Candido!" balance={9999.77} image={contentImage} />
       <Row className='client-container'>
         <Col xs={6}>
-          <Row className="justify-content-center" style={{ marginBottom: '20px' }}>
+          <Row className="justify-content-center resumed-table" style={{ marginBottom: '20px' }}>
             <h2>Últimos lançamentos</h2>
             <ReceiptTable tableSize={3}/>
             <Button className='regular-outline-button' variant="outline-warning" href="/receipt">Ver todos os lançamentos</Button>
           </Row>
-          <Row className="justify-content-center" style={{ marginBottom: '20px' }}>
+          <Row className="justify-content-center resumed-table" style={{ marginBottom: '20px' }}>
             <h2>Extrato</h2>
             <OperationsTable tableSize={3}/>
             <Button className='regular-outline-button' variant="outline-warning" href="/operations">Ver extrato completo</Button>
