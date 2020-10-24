@@ -1,5 +1,5 @@
 import React from "react";
-import { 
+import {
     Navbar,
     ButtonGroup,
     DropdownButton,
@@ -8,9 +8,16 @@ import {
 import logo from "../../assets/images/logo.svg";
 import BeerTechLogo from "../../assets/images/beer-tech-logo.png";
 import './style.scss';
+import { TokenService } from "../../services/TokenService"
 
 interface NavbarComponentProps {
     name: string
+}
+
+const handleLogout = () => {
+    const tokenService = new TokenService(window.localStorage);
+    tokenService.clearToken()
+    window.location.reload()
 }
 
 const NavbarComponent = ({ name }: NavbarComponentProps) => {
@@ -27,11 +34,11 @@ const NavbarComponent = ({ name }: NavbarComponentProps) => {
             <Navbar.Collapse className="justify-content-end">
                 <img alt="" src={BeerTechLogo} width="50" height="50" className="d-inline-block align-top navbar-beer-tech-logo" />
                 <Navbar.Text className='beer-tech-logo-margin'>
-                <ButtonGroup vertical>
-                    <DropdownButton as={ButtonGroup} title={name} id="bg-vertical-dropdown-3">
-                        <Dropdown.Item eventKey="1">Logout</Dropdown.Item>
-                    </DropdownButton>
-                </ButtonGroup>
+                    <ButtonGroup vertical>
+                        <DropdownButton as={ButtonGroup} title={name} id="bg-vertical-dropdown-3">
+                            <Dropdown.Item onClick={handleLogout} eventKey="1">Logout</Dropdown.Item>
+                        </DropdownButton>
+                    </ButtonGroup>
                 </Navbar.Text>
             </Navbar.Collapse>
         </Navbar>
