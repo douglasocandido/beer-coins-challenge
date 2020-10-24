@@ -1,33 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { 
     Table
 } from 'react-bootstrap';
-import IOperationData from '../../interfaces/IOperationData'
+import { IExtrato, IExtratoForm } from '../../interfaces/Extrato';
+import { apiService } from '../../App';
 
 interface OperationsTableProps {
-    operationData: IOperationData[];
+    tableSize?: number;
 }
 
-const OperationsTable = ({ operationData }: OperationsTableProps) => {
+const OperationsTable = ({ tableSize=10 }: OperationsTableProps) => {
+
+    const [operations, setOperations] = useState<IExtrato[]>([]);
+    const filters: IExtratoForm = { page: 0, pageSize: tableSize }
+
+    useEffect(() => {
+    (async () => {
+        const operationsData = await apiService.extrato(filters)
+        setOperations(operationsData)
+    } )()
+    },[])
 
     return (
         <>
-            <Table striped bordered hover className='text-align-right'>
+            <Table striped bordered hover className='text-align-left'>
                 <thead>
                 <tr>
-                    <th>#</th>
+                    <th>Data</th>
                     <th>Beneficiário</th>
                     <th>Valor</th>
-                    <th>Data</th>
+                    <th>Tipo</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {operationData.map((operation: IOperationData) => (
+                    {operations.map((operation: IExtrato) => (
                         <tr>
-                            <td>{operation.id}</td>
-                            <td>{operation.beneficiary}</td>
-                            <td>B$ {operation.value}</td>
-                            <td>{operation.operationDate.toDateString()}</td>
+                            <td>{operation.dataHora}</td>
+                            <td>{operation.nomeContaOrigemOuDestino}</td>
+                            <td>B$ {operation.valor}</td>
+                            <td>{operation.tipo}</td>
                         </tr>
                         )
                     )}
