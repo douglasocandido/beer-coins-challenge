@@ -51,8 +51,8 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
                         </tr>
                     </thead>
                     <tbody>
-                        {operations.map((operation: IExtrato) => (
-                            <tr>
+                        {operations.map((operation: IExtrato, index) => (
+                            <tr key={index}>
                                 <td>{formatDate.format(operation.dataHora)}</td>
                                 <td>{operation.nomeContaOrigemOuDestino}</td>
                                 <td>B$ {operation.valor}</td>

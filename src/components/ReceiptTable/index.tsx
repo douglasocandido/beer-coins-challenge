@@ -49,8 +49,8 @@ const ReceiptTableTable = ({ tableSize=10, isClientDashboard }: ReceiptTableProp
                         </tr>
                     </thead>
                     <tbody>
-                        {operations.map((receipt: IExtrato) => (
-                            <tr>
+                        {operations.map((receipt: IExtrato, index) => (
+                            <tr key={index}>
                                 <td>{formatDate.format(receipt.dataHora)}</td>
                                 <td>B$ {receipt.valor}</td>
                             </tr>
