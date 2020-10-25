@@ -51,12 +51,12 @@ const Presentation = ({ title, backToHome, isRewardsScreen, image }: Presentatio
               !isRewardsScreen ?
                 <Col className='align-center'>
                   {!isAdmin && <p><Button className='regular-button' variant="warning" onClick={handleOpenModal}>Transferir</Button></p>}
-                  {backToHome && <p><Button className='regular-outline-button' variant="outline-warning" href="/">Voltar</Button></p>}
+                  {backToHome && <p><Button className='regular-outline-button voltar-transf' variant="outline-warning" href="/">Voltar</Button></p>}
                 </Col>
                 :
                 <Col className='align-center'>
                   <p><Button className='regular-button' variant="warning" onClick={handleOpenModal}>Ver histórico</Button></p>
-                  <p><Button className='regular-outline-button' variant="outline-warning" href="/">Voltar</Button></p>
+                  <p><Button className='regular-outline-button voltar' variant="outline-warning" href="/">Voltar</Button></p>
                 </Col>
             }
           </Row>

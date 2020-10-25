@@ -74,7 +74,7 @@ function ModalTransfer({ handleClose, show }: ModalTransferProps) {
                         </FormGroup>
                     </Modal.Body>
                     <Modal.Footer style={{ justifyContent: 'space-between', padding: '0px' }}>
-                        <Button className="regular-outline-button modal-transfer-button" variant="link" onClick={handleClose}>Cancelar</Button>
+                        <Button className="outline-button-cancel" variant="link" onClick={handleClose}>Cancelar</Button>
                         <Button className="regular-button modal-transfer-button" type="submit" variant="warning">Transferir</Button>
                         <ModalFooter />
                     </Modal.Footer>
