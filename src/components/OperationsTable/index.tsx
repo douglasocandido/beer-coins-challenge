@@ -29,14 +29,14 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
     const getOperations = useCallback(async () => {
         const operationsData = await apiService.extrato(filters)
         setOperations(operationsData)
-        if(operationsData.length > 0) {
+        if (operationsData.length > 0) {
             setEmptyTable(false)
         }
     }, [])
 
     useEffect(() => {
         getOperations()
-    },[])
+    }, [])
 
     const renderTable = (() => {
         return (
@@ -62,13 +62,13 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
                         )}
                     </tbody>
                 </Table>
-                { isClientDashboard ? <Button className='regular-outline-button' variant="outline-warning" onClick={() => handleRedirect('operations')}>Ver extrato completo</Button> : null }
+                { isClientDashboard ? <Button className='regular-outline-button' variant="outline-warning" onClick={() => handleRedirect('operations')}>Ver extrato completo</Button> : null}
             </>
         )
     })
 
     return (
-        <>     
+        <>
             { emptyTable ? <EmptyTable /> : renderTable()}
         </>
     )

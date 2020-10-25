@@ -47,8 +47,8 @@ const NavbarComponent = () => {
                 <Navbar.Text className='beer-tech-logo-margin'>
                     <ButtonGroup vertical>
                         <DropdownButton as={ButtonGroup} title={user.Nome} id="bg-vertical-dropdown-3">
-                            <Dropdown.Item onClick={handleLogout} eventKey="1">Logout</Dropdown.Item>
-                            {!isAdmin && <Dropdown.Item onClick={handleRedirect} eventKey="1">Beerwards</Dropdown.Item>}                        </DropdownButton>
+                            {!isAdmin && <Dropdown.Item onClick={handleRedirect} eventKey="1">Beerwards</Dropdown.Item>}
+                            <Dropdown.Item onClick={handleLogout} eventKey="1">Logout</Dropdown.Item>                      </DropdownButton>
                     </ButtonGroup>
                 </Navbar.Text>
             </Navbar.Collapse>

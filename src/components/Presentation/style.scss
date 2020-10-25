@@ -1,17 +1,26 @@
 .presentation-container {
-    background-color: #fff;
-    margin-bottom: 0px;
-    padding: 2rem 2rem;
+  background-color: #fff;
+  margin-bottom: 0px;
+  padding: 2rem 2rem;
 }
 
 .align-center {
-    text-align: center;
+  text-align: center;
 }
 
 .presentation-subtitle {
-    font-size: 23px;
+  font-size: 23px;
+  margin-bottom: 0;
+  .spinner-saldo {
+    margin-left: 10px;
+    margin-bottom: 5px;
+  }
 }
 
 .presentation-image {
-    height: 290px;
+  height: 290px;
+}
+
+.presentation-hash {
+  color: gray;
 }

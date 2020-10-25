@@ -10,6 +10,7 @@ export interface ITokenData {
   exp?: number,
   iat?: number,
   sub?: number,
+  Hash?: string
 }
 
 export interface IToken {
