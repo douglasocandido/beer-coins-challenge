@@ -1,8 +1,6 @@
 import React from "react";
-import {
-    Navbar,
-} from 'react-bootstrap';
-import logo from "../../assets/images/logo.svg";
+import { Navbar } from 'react-bootstrap';
+import logo from "../../assets/images/logo.svg"
 import BeerTechLogo from "../../assets/images/beer-tech-logo.png";
 import './style.scss';
 

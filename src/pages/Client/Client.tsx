@@ -1,12 +1,7 @@
 import React from 'react';
-import Presentation from '../../components/Presentation';
-import CarouselComponent from "../../components/Carousel/index"
-import NavbarComponent from '../../components/NavbarComponent';
+import { OperationsTable, ReceiptTable, Presentation, Carousel, NavbarComponent } from '../../components';
 import { Row, Col } from 'react-bootstrap';
 import { useAppState } from '../../AppContext';
-
-import ReceiptTable from '../../components/ReceiptTable';
-import OperationsTable from '../../components/OperationsTable';
 import contentImage from '../../assets/images/client.svg';
 import './style.scss';
 
@@ -33,7 +28,7 @@ export default function Client() {
             <Col>
               <Row className="justify-content-center">
                 <h2>Resumo do Extrato</h2>
-                </Row>
+              </Row>
               <Row className="justify-content-center">
                 <OperationsTable tableSize={3} isClientDashboard />
               </Row>
@@ -42,7 +37,7 @@ export default function Client() {
         </Col>
         <Col className='rewards-preview-container'>
           <div className='rewards-preview'>
-            <CarouselComponent />
+            <Carousel />
           </div>
         </Col>
       </Row>

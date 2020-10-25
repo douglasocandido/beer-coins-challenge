@@ -1,21 +1,11 @@
 import React from "react";
-import {
-    Navbar,
-    ButtonGroup,
-    DropdownButton,
-    Dropdown
-} from 'react-bootstrap';
+import { Navbar, ButtonGroup, DropdownButton, Dropdown } from 'react-bootstrap';
 import logo from "../../assets/images/logo.svg";
 import BeerTechLogo from "../../assets/images/beer-tech-logo.png";
-import './style.scss';
 import { TokenService } from "../../services/TokenService"
 import { useHistory } from 'react-router-dom';
 import { useAppState } from '../../AppContext';
-
-
-
-
-
+import './style.scss';
 
 const NavbarComponent = () => {
     const history = useHistory();

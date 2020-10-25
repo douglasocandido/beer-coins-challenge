@@ -1,15 +1,21 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Roboto:wght@400;500&display=swap");
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.modal-title {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Lora", Roboto, serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+span,
+button,
+div,
+p {
+  font-family: Roboto, sans-serif;
 }
 
 .btn-primary {
