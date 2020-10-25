@@ -27,7 +27,7 @@ import { ITokenData } from './interfaces/Token';
 
 const tokenService = new TokenService(window.localStorage);
 const apiUrl = process.env.REACT_APP_API_URL || 'https://beertech-banco.herokuapp.com/beercoins';
-const axiosHandler = new AxiosHandler(apiUrl, tokenService)
+const axiosHandler = new AxiosHandler(apiUrl, tokenService);
 export const apiService = new APIService(axiosHandler)
 
 function App() {

@@ -5,6 +5,7 @@ import { ITokenData } from "./Token";
 import { ITransferenciaForm } from "./Transferencia";
 import { IExtrato, IExtratoForm } from "./Extrato";
 import { ISaldo } from "./Saldo";
+import { IProduct } from "./Product";
 
 export default interface IAPIHandler {
   login(email: string, password: string): Promise<ITokenData>;
@@ -14,4 +15,5 @@ export default interface IAPIHandler {
   getSaldo(): Promise<ISaldo>;
   transferencia(form: ITransferenciaForm): Promise<AxiosResponse>;
   deposito(form: IDepositoForm): Promise<AxiosResponse>;
+  getProducts(): Promise<IProduct[]>;
 }
