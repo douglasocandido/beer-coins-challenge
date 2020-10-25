@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form, Modal } from "react-bootstrap"
-import ModalFooter from "../../../components/ModalFooter"
+import { ModalFooter } from "../../../components/"
 import "./style.scss";
 
 interface RegisterProps {

@@ -16,7 +16,7 @@ import Login from './pages/Login';
 import Operations from './pages/Operations';
 import Receipt from './pages/Receipt';
 import Rewards from './pages/Rewards'
-import Error from './pages/Error';
+import Error from './pages/Error/Error';
 
 
 import APIService from './services/APIService'

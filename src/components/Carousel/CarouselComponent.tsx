@@ -1,9 +1,7 @@
 import React from "react";
-import {
-    Carousel,
-} from 'react-bootstrap';
-import './style.scss';
+import { Carousel } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import './style.scss';
 
 const imageUrl = 'https://emporiodacerveja.vtexassets.com/arquivos/ids/178169-800-auto?width=800&height=auto&aspect=true'
 

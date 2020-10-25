@@ -1,9 +1,8 @@
 import React from 'react';
 import { Button, Form, Modal } from "react-bootstrap"
-import ModalFooter from "../../../components/ModalFooter"
+import { ModalFooter, RewardsHistoryTable } from "../../../components/"
 import "./style.scss";
 
-import RewardsHistoryTable from "../../../components/RewardsHistoryTable"
 
 interface RegisterProps {
     handleShow: () => void,
