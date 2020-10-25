@@ -89,16 +89,16 @@ export default function Register({ handleClose, show }: RegisterProps) {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer style={{ justifyContent: 'space-between' }}>
-            <Button className="regular-outline-button" variant="outline-warning" onClick={handleClose}>Cancelar</Button>
+            <Button className="outline-button-cancel" variant="link" onClick={handleClose}>Cancelar</Button>
             <Button className="regular-button cadastrar-button" variant="warning" type="submit">
-              { loading ?
+              {loading ?
                 <Spinner
                   as="span"
                   animation="border"
                   size="sm"
                   role="status"
                   aria-hidden="true"
-                /> : 'Cadastrar' }
+                /> : 'Cadastrar'}
             </Button>
             <ModalFooter />
           </Modal.Footer>

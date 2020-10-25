@@ -42,7 +42,7 @@ const AdminTable = ({ tableTitle }: AdminTableProps) => {
           </div> :
           <>
             <h2>{tableTitle}</h2>
-            <Table responsive = "sm" className='text-align-center'>
+            <Table responsive="sm" className='text-align-center'>
               <thead>
                 <tr>
                   <th>#</th>
@@ -54,23 +54,23 @@ const AdminTable = ({ tableTitle }: AdminTableProps) => {
                 </tr>
               </thead>
               <tbody>
-                { adminData.map((conta: IConta, index: number) => (
-                    <tr key={conta.hash}>
-                    <td>{index+1}</td>
+                {adminData.map((conta: IConta, index: number) => (
+                  <tr key={conta.hash}>
+                    <td>{index + 1}</td>
                     <td>{conta.nome}</td>
                     <td>{conta.email}</td>
                     <td>{conta.cnpj}</td>
                     <td>{conta.saldo}</td>
                     <td>
-                        <a href='#'></a><Popover hash={conta.hash} onCompleted={fetchTableData} />
+                      <Popover hash={conta.hash} nome={conta.nome} onCompleted={fetchTableData} />
                     </td>
-                    </tr>
+                  </tr>
                 ))}
               </tbody>
             </Table>
           </>
-        }
-      </>
+      }
+    </>
   )
 };
 
