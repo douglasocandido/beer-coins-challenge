@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { 
     Table,
     Button
@@ -26,16 +26,17 @@ const ReceiptTableTable = ({ tableSize=10, isClientDashboard }: ReceiptTableProp
         history.push(`/${url}`)
     }
 
-    useEffect(() => {
-      (async () => {
+    const getOperations = useCallback(async () => {
         const operationsData = await apiService.extrato(filters)
         setOperations(operationsData)
-        
         if(operationsData.length > 0) {
             setEmptyTable(false)
         }
-      })()
-    }, [filters]);
+    }, [])
+
+    useEffect(() => {
+        getOperations()
+    },[])
 
     const renderTable = (() => {
         return (

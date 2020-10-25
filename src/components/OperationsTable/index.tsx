@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
     Table,
     Button
@@ -18,7 +18,7 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
 
     const [operations, setOperations] = useState<IExtrato[]>([]);
     const [emptyTable, setEmptyTable] = useState(true);
-    const filters: IExtratoForm = { page: 0, pageSize: tableSize }
+    const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: '' }
     const formatDate = new FormatDate()
 
     const history = useHistory();
@@ -26,16 +26,17 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
         history.push(`/${url}`)
     }
 
-    useEffect(() => {
-        (async () => {
-          const operationsData = await apiService.extrato(filters)
-          setOperations(operationsData)
-
-          if(operationsData.length > 0) {
+    const getOperations = useCallback(async () => {
+        const operationsData = await apiService.extrato(filters)
+        setOperations(operationsData)
+        if(operationsData.length > 0) {
             setEmptyTable(false)
-          }
-        })()
-    }, [filters])
+        }
+    }, [])
+
+    useEffect(() => {
+        getOperations()
+    },[])
 
     const renderTable = (() => {
         return (
