@@ -3,6 +3,7 @@ import { IConta, IFormConta, IFormContaResponse } from "../interfaces/Conta";
 import { IDepositoForm } from "../interfaces/Deposito";
 import { IExtrato, IExtratoForm } from "../interfaces/Extrato";
 import IAPIHandler from "../interfaces/IAPIHandler";
+import { ISaldo } from "../interfaces/Saldo";
 import { ITokenData } from "../interfaces/Token";
 import { ITransferenciaForm } from '../interfaces/Transferencia';
 
@@ -35,5 +36,9 @@ export default class APIService {
 
   transferencia(form: ITransferenciaForm): Promise<AxiosResponse>{
     return this.apiAccess.transferencia(form);
+  }
+ 
+  getSaldo(): Promise<ISaldo> {
+    return this.apiAccess.getSaldo();
   }
 }

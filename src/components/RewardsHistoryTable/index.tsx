@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
     Table
 } from 'react-bootstrap';
@@ -14,12 +14,18 @@ const RewardsHistoryTable = ({ tableSize = 10 }: ReceiptTableProps) => {
     const [operations, setOperations] = useState<IExtrato[]>([]);
     const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: 'DEPOSITO' }
 
+    const getOperations = useCallback(async () => {
+        const operationsData = await apiService.extrato(filters)
+        setOperations(operationsData)
+        if (operationsData.length > 0) {
+            // setEmptyTable(false)
+        }
+    }, [])
+
     useEffect(() => {
-        (async () => {
-            const operationsData = await apiService.extrato(filters)
-            setOperations(operationsData)
-        })()
-    }, [filters]);
+        getOperations()
+    }, [])
+
 
     return (
         <>
