@@ -4,7 +4,8 @@ import {
   Button,
   Row,
   Col,
-  Spinner
+  Spinner,
+  Image
 } from 'react-bootstrap';
 import './style.scss'
 import ModalTransfer from '../ModalTransfer/'
@@ -59,6 +60,9 @@ const Presentation = ({ title, backToHome, isRewardsScreen, image }: Presentatio
                 </Col>
             }
           </Row>
+        </Col>
+        <Col className='align-center'>
+          <Image className='presentation-image' src={image} />
         </Col>
       </Row>
       {
