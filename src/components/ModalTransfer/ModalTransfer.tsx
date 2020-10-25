@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react'
 import { Button, Form, Image, Modal, Col, FormGroup } from "react-bootstrap"
 import { toast } from 'react-toastify';
 import ModalFooter from '../ModalFooter'
-import { ITransferenciaForm } from '../../interfaces/Transferencia'
 import transfer from "../../assets/images/transfer.svg"
 import './style.scss'
 import { apiService } from '../../App';

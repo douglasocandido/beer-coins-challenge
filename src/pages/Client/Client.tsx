@@ -20,12 +20,24 @@ export default function Client() {
       <Row className='client-container'>
         <Col>
           <Row className="justify-content-center resumed-table">
-            <h2>Últimos lançamentos</h2>
-            <ReceiptTable tableSize={3} isClientDashboard />
+            <Col>
+              <Row className="justify-content-center">
+                <h2>Últimos lançamentos</h2>
+              </Row>
+              <Row className="justify-content-center">
+                <ReceiptTable tableSize={3} isClientDashboard />
+              </Row>
+            </Col>
           </Row>
           <Row className="justify-content-center resumed-table">
-            <h2>Resumo do Extrato</h2>
-            <OperationsTable tableSize={3} isClientDashboard />
+            <Col>
+              <Row className="justify-content-center">
+                <h2>Resumo do Extrato</h2>
+                </Row>
+              <Row className="justify-content-center">
+                <OperationsTable tableSize={3} isClientDashboard />
+              </Row>
+            </Col>
           </Row>
         </Col>
         <Col className='rewards-preview-container'>

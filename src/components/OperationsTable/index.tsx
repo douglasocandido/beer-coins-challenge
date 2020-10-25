@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Table,
-    Button
+    Button, 
+    Spinner
 } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { IExtrato, IExtratoForm } from '../../interfaces/Extrato';
@@ -18,24 +19,23 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
 
     const [operations, setOperations] = useState<IExtrato[]>([]);
     const [emptyTable, setEmptyTable] = useState(true);
-    const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: '' }
-    const formatDate = new FormatDate()
+    const [loading, setLoading] = useState(false);
+    const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: '' };
+    const formatDate = new FormatDate();
 
     const history = useHistory();
     const handleRedirect = (url: string) => {
         history.push(`/${url}`)
     }
 
-    const getOperations = useCallback(async () => {
-        const operationsData = await apiService.extrato(filters)
-        setOperations(operationsData)
-        if (operationsData.length > 0) {
-            setEmptyTable(false)
-        }
-    }, [])
-
     useEffect(() => {
-        getOperations()
+        setLoading(true);
+        apiService.extrato(filters).then((operationsData: IExtrato[]) => {
+            setOperations(operationsData)
+            if(operationsData.length > 0) {
+                setEmptyTable(false)
+            }
+        }).finally(() => setLoading(false))
     }, [])
 
     const renderTable = (() => {
@@ -69,7 +69,7 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
 
     return (
         <>
-            { emptyTable ? <EmptyTable /> : renderTable()}
+            { loading ? <Spinner className="spinner-tables" animation='border' variant="secondary" size="sm" /> : emptyTable ? <EmptyTable /> : renderTable() }
         </>
     )
 };
