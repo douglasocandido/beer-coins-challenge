@@ -22,7 +22,8 @@ interface PresentationProps {
 
 const Presentation = ({ title, backToHome, isRewardsScreen, image }: PresentationProps) => {
   const { user } = useAppState()
-
+  const { Perfil: userPerfil } = user
+  const isAdmin = userPerfil === 'ROLE_ADMIN'
   const [isModalVisible, setModalVisible] = useState(false);
   const handleCloseModal = () => setModalVisible(false);
   const handleOpenModal = () => setModalVisible(true);
@@ -44,13 +45,12 @@ const Presentation = ({ title, backToHome, isRewardsScreen, image }: Presentatio
           <h1 className='presentation-title'>{title}</h1>
           <Row>
             <Col className='align-left'>
-              <p className='presentation-subtitle'>Saldo em conta: {loading ? <Spinner className="spinner-saldo" animation='border' variant="secondary" size="sm" /> : ` B$ ${saldo}`}</p>
-              <p className="presentation-hash">{`seu hash: ${user.Hash}`} </p>
+              {!isAdmin && <p className='presentation-subtitle'>Saldo em conta: {loading ? <Spinner className="spinner-saldo" animation='border' variant="secondary" size="sm" /> : ` B$ ${saldo}`}</p>}              <p className="presentation-hash">{`seu hash: ${user.Hash}`} </p>
             </Col>
             {
               !isRewardsScreen ?
                 <Col className='align-center'>
-                  <p><Button className='regular-button' variant="warning" onClick={handleOpenModal}>Transferir</Button></p>
+                  {!isAdmin && <p><Button className='regular-button' variant="warning" onClick={handleOpenModal}>Transferir</Button></p>}
                   {backToHome && <p><Button className='regular-outline-button' variant="outline-warning" href="/">Voltar</Button></p>}
                 </Col>
                 :

@@ -1,10 +1,13 @@
-import React, { useState }  from "react";
-import { Button } from "react-bootstrap"
+import React, { useState } from "react";
+import { Button, Row, Col } from "react-bootstrap"
 
 import NavbarComponent from '../../components/NavbarComponent'
+import Presentation from "../../components/Presentation"
 import AdminTable from '../../components/AdminTable'
-import "./style.scss"
 import Register from "../Register";
+
+import imageContent from "../../assets/images/admin.svg"
+import "./style.scss"
 
 export default function Admin() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -15,9 +18,8 @@ export default function Admin() {
   return (
     <>
       <NavbarComponent />
-      <h1 className="title-admin">
-        BeerCoins Administrador
-      </h1>
+      <Presentation title={'BeerCoins | Administrador'} image={imageContent} />
+
       <section className="contas-wrapper">
         <Button onClick={handleOpenModal} className="regular-button criar-conta-btn" type="button" variant="warning">Criar Conta</Button>
         <AdminTable tableTitle='Contas' />
@@ -26,6 +28,7 @@ export default function Admin() {
     </>
   )
 }
+
 
 
 
