@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { 
     Table,
-    Button
+    Button,
+    Spinner
 } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { IExtrato, IExtratoForm } from '../../interfaces/Extrato';
@@ -18,6 +19,7 @@ const ReceiptTableTable = ({ tableSize=10, isClientDashboard }: ReceiptTableProp
 
     const [operations, setOperations] = useState<IExtrato[]>([]);
     const [emptyTable, setEmptyTable] = useState(true);
+    const [loading, setLoading] = useState(false);
     const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: 'DEPOSITO' }
     const formatDate = new FormatDate()
 
@@ -26,17 +28,15 @@ const ReceiptTableTable = ({ tableSize=10, isClientDashboard }: ReceiptTableProp
         history.push(`/${url}`)
     }
 
-    const getOperations = useCallback(async () => {
-        const operationsData = await apiService.extrato(filters)
-        setOperations(operationsData)
-        if(operationsData.length > 0) {
-            setEmptyTable(false)
-        }
-    }, [])
-
     useEffect(() => {
-        getOperations()
-    },[])
+        setLoading(true);
+        apiService.extrato(filters).then((operationsData: IExtrato[]) => {
+            setOperations(operationsData)
+            if(operationsData.length > 0) {
+                setEmptyTable(false)
+            }
+        }).finally(() => setLoading(false))
+    }, [])
 
     const renderTable = (() => {
         return (
@@ -49,8 +49,8 @@ const ReceiptTableTable = ({ tableSize=10, isClientDashboard }: ReceiptTableProp
                         </tr>
                     </thead>
                     <tbody>
-                        {operations.map((receipt: IExtrato) => (
-                            <tr>
+                        {operations.map((receipt: IExtrato, index) => (
+                            <tr key={index}>
                                 <td>{formatDate.format(receipt.dataHora)}</td>
                                 <td>B$ {receipt.valor}</td>
                             </tr>
@@ -64,8 +64,8 @@ const ReceiptTableTable = ({ tableSize=10, isClientDashboard }: ReceiptTableProp
     })
 
     return (
-        <>     
-            { emptyTable ? <EmptyTable /> : renderTable()}
+        <>
+            { loading ? <Spinner className="spinner-tables" animation='border' variant="secondary" size="sm" /> : emptyTable ? <EmptyTable /> : renderTable() }
         </>
     )
 };
