@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { Spinner, Table } from "react-bootstrap"
 
 import { IConta } from '../../interfaces/Conta'
-import Popover from '../Popover'
+import { Popover } from '../index'
 import { apiService } from '../../App';
 
 interface AdminTableProps {

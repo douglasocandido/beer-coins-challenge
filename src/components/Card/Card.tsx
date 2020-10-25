@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
-import {
-    Button,
-    Card
-} from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import ConfirmExchange from "../../pages/Rewards/components/ConfirmExchange"
 import "./style.scss";
 

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Button, Row, Col } from "react-bootstrap"
+import { Button } from "react-bootstrap"
 
-import NavbarComponent from '../../components/NavbarComponent'
-import Presentation from "../../components/Presentation"
-import AdminTable from '../../components/AdminTable'
+import { AdminTable, NavbarComponent, Presentation } from '../../components'
 import Register from "../Register";
 
 import imageContent from "../../assets/images/admin.svg"

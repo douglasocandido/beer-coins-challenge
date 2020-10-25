@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react'
 import { Button, Form, Image, Modal, Col, FormGroup } from "react-bootstrap"
 import { toast } from 'react-toastify';
-import ModalFooter from '../ModalFooter'
+import { ModalFooter } from '../index'
 import transfer from "../../assets/images/transfer.svg"
-import './style.scss'
 import { apiService } from '../../App';
+import './style.scss'
 
 interface ModalTransferProps {
     handleClose: () => void

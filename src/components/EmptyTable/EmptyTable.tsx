@@ -1,9 +1,8 @@
 import React from "react";
-import {
-    Image
-} from 'react-bootstrap';
-import './style.scss';
+import { Image } from 'react-bootstrap';
 import emptyImage from '../../assets/images/empty.svg';
+
+import './style.scss';
 
 const EmptyTable = () => {
     return (
