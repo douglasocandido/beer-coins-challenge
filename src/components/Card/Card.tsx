@@ -8,17 +8,19 @@ interface ICard {
     description: string,
     price: number,
     imageUrl: string,
-
+    productId: number
 }
 
-const CardComponent: React.FC<ICard> = ({ title, description, price, imageUrl }) => {
-    const [showExchangeModal, setShowExchangeModal] = useState<boolean>()
+const CardComponent: React.FC<ICard> = ({ title, productId, description, price, imageUrl }) => {
+    const [showExchangeModal, setShowExchangeModal] = useState<boolean>(false)
+
     const handleShow = () => setShowExchangeModal(true)
     const handleClose = () => setShowExchangeModal(false)
+
     return (
         <>
-            <Card style={{ width: '20rem' }}>
-                <Card.Img variant="top" src={imageUrl} />
+            <Card className="card-container">
+                <Card.Img variant="top" className="card-image" src={imageUrl} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Card.Subtitle>{description}</Card.Subtitle>
@@ -28,7 +30,7 @@ const CardComponent: React.FC<ICard> = ({ title, description, price, imageUrl })
                     </div>
                 </Card.Body>
             </Card>
-            <ConfirmExchange productTitle={title} productPrice={price} show={!!showExchangeModal} handleShow={handleShow} handleClose={handleClose} />
+            <ConfirmExchange productTitle={title} productId={productId} productPrice={price} show={!!showExchangeModal} handleShow={handleShow} handleClose={handleClose} />
         </>
     )
 }

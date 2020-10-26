@@ -7,6 +7,7 @@ import { IDepositoForm } from "../interfaces/Deposito";
 import { ITransferenciaForm } from "../interfaces/Transferencia";
 import { IExtratoForm, IExtrato, IExtratoResponse } from "../interfaces/Extrato";
 import { ISaldo } from "../interfaces/Saldo";
+import { IProduct, IProductResponse,IProductPagination } from "../interfaces/Product";
 
 export default class AxiosHandler implements IAPIHandler {
   private instance: AxiosInstance;
@@ -88,12 +89,22 @@ export default class AxiosHandler implements IAPIHandler {
     return data;
   }
 
+  async getProducts(pagination: IProductPagination): Promise<IProduct[]> {
+    const {page, pageSize} = pagination;
+    const { data } = await this.instance.get<IProductResponse>(`/product?page=${page}&size=${pageSize}`);
+    return data.content;
+  }
+
   transferencia(form: ITransferenciaForm): Promise<AxiosResponse> {
     return this.instance.post(`/conta/transferencia`, form);
   }
 
   deposito(form: IDepositoForm): Promise<AxiosResponse> {
     return this.instance.post(`/conta/deposito`, form);
+  }
+
+  rewardProduct(productId: number): Promise<AxiosResponse> {
+    return this.instance.post(`/product/reward/${productId}`)
   }
 
 }

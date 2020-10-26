@@ -1,13 +1,12 @@
 import { AxiosResponse } from "axios";
 import { IConta, IFormConta, IFormContaResponse } from "../interfaces/Conta";
+import { IProduct,IProductPagination} from "../interfaces/Product";
 import { IDepositoForm } from "../interfaces/Deposito";
 import { IExtrato, IExtratoForm } from "../interfaces/Extrato";
 import IAPIHandler from "../interfaces/IAPIHandler";
 import { ISaldo } from "../interfaces/Saldo";
 import { ITokenData } from "../interfaces/Token";
 import { ITransferenciaForm } from '../interfaces/Transferencia';
-
-
 
 export default class APIService {
   constructor(
@@ -41,4 +40,13 @@ export default class APIService {
   getSaldo(): Promise<ISaldo> {
     return this.apiAccess.getSaldo();
   }
+
+  getProducts(pagination:IProductPagination): Promise<IProduct[]> {
+    return this.apiAccess.getProducts(pagination);
+  }
+
+  rewardProduct(id: number):Promise<AxiosResponse>{
+    return this.apiAccess.rewardProduct(id)
+  }
+
 }

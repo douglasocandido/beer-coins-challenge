@@ -1,17 +1,42 @@
 import React from 'react';
 import { Button, Form, Modal } from "react-bootstrap"
 import { ModalFooter } from "../../../components/"
+import { toast } from 'react-toastify';
+
+import { TokenService } from '../../../services/TokenService';
+import AxiosHandler from '../../../services/AxiosHandler';
+import APIService from '../../../services/APIService';
+
 import "./style.scss";
+
+
+const tokenService = new TokenService(window.localStorage);
+const apiUrl = process.env.REACT_APP_API_URL || 'https://beertech-banco-produto.herokuapp.com/beercoins';
+const axiosHandler = new AxiosHandler(apiUrl, tokenService)
+const apiServiceProducts = new APIService(axiosHandler)
+
 
 interface RegisterProps {
   handleShow: () => void,
   handleClose: () => void,
   show: boolean,
   productPrice: number,
-  productTitle: string
+  productTitle: string,
+  productId: number
 }
 
-export default function ConfirmExchange({ handleShow, handleClose, show, productPrice, productTitle }: RegisterProps) {
+
+
+export default function ConfirmExchange({ handleShow, handleClose, show, productPrice, productId, productTitle }: RegisterProps) {
+  const handleReward = (productId: number) => {
+    apiServiceProducts.rewardProduct(productId).then((response: any) => {
+      toast.success('Troca realizada com sucesso!')
+      handleCancel()
+    }).catch((error: any) => {
+      console.error('transferencia', error)
+      toast.error('Algo está errado, desculpe!');
+    })
+  }
 
   const handleCancel = () => {
     handleClose()
@@ -29,7 +54,7 @@ export default function ConfirmExchange({ handleShow, handleClose, show, product
           </Modal.Body>
           <div className="exchange-modal-footer">
             <Button className="outline-button-cancel" variant="link" onClick={handleCancel}>Cancelar</Button>
-            <Button className="regular-button" variant="warning" type="submit">Confirmar</Button>
+            <Button className="regular-button" variant="warning" onClick={() => handleReward(productId)}>Confirmar</Button>
           </div>
           <ModalFooter />
         </Form>
