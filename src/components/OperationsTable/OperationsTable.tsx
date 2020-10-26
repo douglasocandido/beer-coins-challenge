@@ -45,7 +45,6 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
                     <thead>
                         <tr>
                             <th>Data</th>
-                            <th>Beneficiário</th>
                             <th>Valor</th>
                             <th>Tipo</th>
                         </tr>
@@ -54,7 +53,6 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
                         {operations.map((operation: IExtrato, index) => (
                             <tr key={index}>
                                 <td>{formatDate.format(operation.dataHora)}</td>
-                                <td>{operation.nomeContaOrigemOuDestino}</td>
                                 <td>B$ {operation.valor}</td>
                                 <td>{operation.tipo}</td>
                             </tr>
