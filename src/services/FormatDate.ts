@@ -6,11 +6,11 @@ export default class FormatDate {
     }
     
     getFormatedDay(date: Date) {
-        return `0${date.getDay()}`.slice(-2)
+        return `0${date.getDate()}`.slice(-2)
     }
 
     getFormatedMonth(date: Date) {
-        return `0${date.getMonth()}`.slice(-2)
+        return `0${date.getMonth()+1}`.slice(-2)
     }
 
     getFormatedHours(date: Date) {
