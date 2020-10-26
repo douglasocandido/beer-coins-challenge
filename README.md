@@ -34,12 +34,15 @@ A seguir, detalhes de cada uma das possibilidades:
 Para o desenvolvimento do projeto, o time decidiu usar as seguintes ferramentas/bibliotecas:
 
 - Typescript
-- React (+ Context API)
+- React (+ Context API + Hooks)
 - Bootstrap (+Sass para estilos adicionais)
 - Axios
+- Vercel (para deploy)
 - [Figma para prototipação](https://www.figma.com/file/OgNzk1Ma6phODGGe6ANZ4a/beerTech-Challenge?node-id=1%3A5)
 - JIRA para controle de atividades (alinhado com back-end)
 
 ---
 
 ## Desafios
+
+O principal desafio foi o prazo curto para execução das tarefas, desde a concepção da ideia, prototipação, desenvolvimento de telas e integração com o back-end. Alguns membros também tiveram desafios individuais ao usar novas tecnologias como Typescript e Context API.
