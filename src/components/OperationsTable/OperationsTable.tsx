@@ -15,11 +15,23 @@ interface OperationsTableProps {
     isClientDashboard?: boolean;
 }
 
+interface paginationProps {
+    page: number,
+    pageSize: number
+}
+
 const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableProps) => {
+
+    const paginationInitialState = {
+        page: 0,
+        pageSize: 10
+    }
 
     const [operations, setOperations] = useState<IExtrato[]>([]);
     const [emptyTable, setEmptyTable] = useState(true);
+    const [pagination, setPagination] = useState<paginationProps>(paginationInitialState)
     const [loading, setLoading] = useState(false);
+
     const formatDate = new FormatDate();
 
     const history = useHistory();
@@ -29,7 +41,7 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
 
     useEffect(() => {
         setLoading(true);
-        const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: 'DEPOSITO' };
+        const filters: IExtratoForm = { page: 0, pageSize: tableSize };
         apiService.extrato(filters).then((operationsData: IExtrato[]) => {
             setOperations(operationsData)
             if (operationsData.length > 0) {
@@ -37,6 +49,17 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
             }
         }).finally(() => setLoading(false))
     }, [tableSize]);
+
+    const handleProductPagination = () => {
+        let tempPagination = {
+            ...pagination,
+            pageSize: (pagination.pageSize + 10)
+        }
+        apiService.extrato((tempPagination)).then((operationsData: IExtrato[]) => {
+            setOperations(operationsData)
+        }).finally(() => setLoading(false))
+        setPagination(tempPagination)
+    }
 
     const renderTable = (() => {
         return (
@@ -60,7 +83,7 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
                         )}
                     </tbody>
                 </Table>
-                { isClientDashboard ? <Button className='regular-outline-button' variant="outline-warning" onClick={() => handleRedirect('operations')}>Ver extrato completo</Button> : null}
+                { isClientDashboard ? <Button className='regular-outline-button' variant="outline-warning" onClick={() => handleRedirect('operations')}>Ver extrato completo</Button> : <Button className='regular-outline-button show-more-button' variant="outline-warning" onClick={handleProductPagination}>Ver mais</Button>}
             </>
         )
     })

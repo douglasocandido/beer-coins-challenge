@@ -17,7 +17,7 @@ const RewardsHistoryTable = ({ tableSize = 10 }: ReceiptTableProps) => {
 
     useEffect(() => {
         setLoading(true);
-        const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: 'DEPOSITO' };
+        const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: 'RESGATE' };
         apiService.extrato(filters).then((operationsData: IExtrato[]) => {
             setOperations(operationsData)
         }).finally(() => setLoading(false))

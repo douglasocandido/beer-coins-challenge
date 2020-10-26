@@ -17,7 +17,7 @@ const CarouselComponent = () => {
 
     return (
         <>
-        <header>
+        <header className='rewards-header'>
             <h2>Conheça nosso programa de pontos</h2>
             <h3><b>Beerwards</b></h3>
         </header>   
