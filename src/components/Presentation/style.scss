@@ -19,6 +19,10 @@
 
 .presentation-image {
   height: 290px;
+  @media (max-width: 580px) {
+    width: 290px;
+    height: auto;
+  }
 }
 
 .presentation-hash {
