@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { IConta, IFormConta, IFormContaResponse } from "../interfaces/Conta";
-import { IProduct } from "../interfaces/Product";
+import { IProduct,IProductPagination} from "../interfaces/Product";
 import { IDepositoForm } from "../interfaces/Deposito";
 import { IExtrato, IExtratoForm } from "../interfaces/Extrato";
 import IAPIHandler from "../interfaces/IAPIHandler";
@@ -41,8 +41,12 @@ export default class APIService {
     return this.apiAccess.getSaldo();
   }
 
-  getProducts(): Promise<IProduct[]> {
-    return this.apiAccess.getProducts();
+  getProducts(pagination:IProductPagination): Promise<IProduct[]> {
+    return this.apiAccess.getProducts(pagination);
+  }
+
+  rewardProduct(id: number):Promise<AxiosResponse>{
+    return this.apiAccess.rewardProduct(id)
   }
 
 }

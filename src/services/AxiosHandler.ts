@@ -7,7 +7,7 @@ import { IDepositoForm } from "../interfaces/Deposito";
 import { ITransferenciaForm } from "../interfaces/Transferencia";
 import { IExtratoForm, IExtrato, IExtratoResponse } from "../interfaces/Extrato";
 import { ISaldo } from "../interfaces/Saldo";
-import { IProduct, IProductResponse } from "../interfaces/Product";
+import { IProduct, IProductResponse,IProductPagination } from "../interfaces/Product";
 
 export default class AxiosHandler implements IAPIHandler {
   private instance: AxiosInstance;
@@ -89,7 +89,8 @@ export default class AxiosHandler implements IAPIHandler {
     return data;
   }
 
-  async getProducts(page: number = 0, pageSize: number = 3): Promise<IProduct[]> {
+  async getProducts(pagination: IProductPagination): Promise<IProduct[]> {
+    const {page, pageSize} = pagination;
     const { data } = await this.instance.get<IProductResponse>(`/product?page=${page}&size=${pageSize}`);
     return data.content;
   }
@@ -100,6 +101,10 @@ export default class AxiosHandler implements IAPIHandler {
 
   deposito(form: IDepositoForm): Promise<AxiosResponse> {
     return this.instance.post(`/conta/deposito`, form);
+  }
+
+  rewardProduct(productId: number): Promise<AxiosResponse> {
+    return this.instance.post(`/product/reward/${productId}`)
   }
 
 }

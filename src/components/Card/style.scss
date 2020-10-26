@@ -1,3 +1,7 @@
+.card-image {
+  max-height: 300px;
+  object-fit: contain;
+}
 .card-bottom-wrapper {
   margin: 24px 0;
   display: flex;
