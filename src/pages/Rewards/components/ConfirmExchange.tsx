@@ -28,10 +28,11 @@ interface RegisterProps {
 
 
 export default function ConfirmExchange({ handleShow, handleClose, show, productPrice, productId, productTitle }: RegisterProps) {
-  const handleReward = (productId: number) => {
+  const handleReward = (productId: number, productPrice: number) => {
     apiServiceProducts.rewardProduct(productId).then((response: any) => {
       toast.success('Troca realizada com sucesso!')
       handleCancel()
+      setTimeout(function(){ window.location.reload() }, 1000);
     }).catch((error: any) => {
       console.error('transferencia', error)
       toast.error('Algo está errado, desculpe!');
@@ -54,7 +55,7 @@ export default function ConfirmExchange({ handleShow, handleClose, show, product
           </Modal.Body>
           <div className="exchange-modal-footer">
             <Button className="outline-button-cancel" variant="link" onClick={handleCancel}>Cancelar</Button>
-            <Button className="regular-button" variant="warning" onClick={() => handleReward(productId)}>Confirmar</Button>
+            <Button className="regular-button" variant="warning" onClick={() => handleReward(productId, productPrice)}>Confirmar</Button>
           </div>
           <ModalFooter />
         </Form>

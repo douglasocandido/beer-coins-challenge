@@ -64,7 +64,7 @@ export default function Rewards() {
                     :
                     products.map((product: IProduct) => {
                         return (
-                            <Col lg={4} xs={12} md={6} className='card-column'>
+                            <Col key={product.id} lg={4} xs={12} md={6} className='card-column'>
                                 <Card title={product.name}
                                     productId={product.id}
                                     price={product.price}
