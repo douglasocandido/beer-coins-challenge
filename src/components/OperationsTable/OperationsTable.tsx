@@ -20,7 +20,6 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
     const [operations, setOperations] = useState<IExtrato[]>([]);
     const [emptyTable, setEmptyTable] = useState(true);
     const [loading, setLoading] = useState(false);
-    const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: '' };
     const formatDate = new FormatDate();
 
     const history = useHistory();
@@ -30,13 +29,14 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
 
     useEffect(() => {
         setLoading(true);
+        const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: 'DEPOSITO' };
         apiService.extrato(filters).then((operationsData: IExtrato[]) => {
             setOperations(operationsData)
             if (operationsData.length > 0) {
                 setEmptyTable(false)
             }
         }).finally(() => setLoading(false))
-    }, [])
+    }, [tableSize]);
 
     const renderTable = (() => {
         return (
