@@ -19,7 +19,6 @@ export interface IAppState {
 
 export const SET_USER = 'SET_USER'
 export const SET_SALDO = 'SET_SALDO'
-export const UPDATE_SALDO = 'UPDATE_SALDO'
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
@@ -30,13 +29,6 @@ const reducer = (state: any, action: any) => {
         user: {
           ...state.user,
           Saldo: action.saldo
-        }
-      }
-    case UPDATE_SALDO:
-      return {
-        user: {
-          ...state.user,
-          Saldo: (state.user.Saldo - action.productPrice)
         }
       }
   }

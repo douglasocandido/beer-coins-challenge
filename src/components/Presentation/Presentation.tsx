@@ -22,25 +22,24 @@ interface PresentationProps {
 
 const Presentation = ({ title, backToHome, isRewardsScreen, image }: PresentationProps) => {
   const { user } = useAppState()
+  const {Saldo: saldo} = user
   const { Perfil: userPerfil } = user
   const isAdmin = userPerfil === 'ROLE_ADMIN'
   const [isModalVisible, setModalVisible] = useState(false);
   const handleCloseModal = () => setModalVisible(false);
   const handleOpenModal = () => setModalVisible(true);
 
-  const [saldo, setSaldo] = useState(0)
   const [loading, setLoading] = useState(false)
   const [dispatch] = useAppDispatch()
   useEffect(() => {
     setLoading(true);
     apiService.getSaldo().then(({ saldo }) => {
-      setSaldo(saldo);
       dispatch({
         type: 'SET_SALDO',
         saldo
       })
     }).finally(() => setLoading(false))
-  }, [])
+  }, [dispatch])
 
   return (
     <Jumbotron className='presentation-container'>

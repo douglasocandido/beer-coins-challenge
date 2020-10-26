@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Form, Modal } from "react-bootstrap"
 import { ModalFooter } from "../../../components/"
 import { toast } from 'react-toastify';
-import { useAppDispatch } from '../../../AppContext';
 
 import { TokenService } from '../../../services/TokenService';
 import AxiosHandler from '../../../services/AxiosHandler';
@@ -29,15 +28,10 @@ interface RegisterProps {
 
 
 export default function ConfirmExchange({ handleShow, handleClose, show, productPrice, productId, productTitle }: RegisterProps) {
-  const [dispatch] = useAppDispatch()
   const handleReward = (productId: number, productPrice: number) => {
     apiServiceProducts.rewardProduct(productId).then((response: any) => {
       toast.success('Troca realizada com sucesso!')
       handleCancel()
-      dispatch({
-        type: 'UPDATE_SALDO',
-        productPrice
-      })
       setTimeout(function(){ window.location.reload() }, 1000);
     }).catch((error: any) => {
       console.error('transferencia', error)
