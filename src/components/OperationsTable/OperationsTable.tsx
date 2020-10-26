@@ -56,7 +56,7 @@ const OperationsTable = ({ tableSize = 10, isClientDashboard }: OperationsTableP
                                 <td>{formatDate.format(operation.dataHora)}</td>
                                 <td>{operation.nomeContaOrigemOuDestino}</td>
                                 <td>B$ {operation.valor}</td>
-                                <td>{operation.tipo}</td>
+                                <td style={{textTransform: 'capitalize'}}>{operation.tipo.toLowerCase()}</td>
                             </tr>
                         )
                         )}

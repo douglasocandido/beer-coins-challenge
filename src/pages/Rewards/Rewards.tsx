@@ -42,7 +42,7 @@ export default function Rewards() {
         apiServiceProducts.getProducts(pagination).then((products: IProduct[]) => {
             setProducts(products)
         }).finally(() => setLoading(false))
-    }, [])
+    }, [pagination])
 
     const handleProductPagination = () => {
         let tempPagination = {
