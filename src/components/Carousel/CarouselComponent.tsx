@@ -2,8 +2,10 @@ import React from "react";
 import { Carousel } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import './style.scss';
+import cauim from '../../assets/images/rewards-cauim.jpg';
+import original from '../../assets/images/rewards-original.jpg';
+import hallo from '../../assets/images/rewards-hallo.jpg'
 
-const imageUrl = 'https://emporiodacerveja.vtexassets.com/arquivos/ids/178169-800-auto?width=800&height=auto&aspect=true'
 
 const CarouselComponent = () => {
 
@@ -14,42 +16,37 @@ const CarouselComponent = () => {
     }
 
     return (
+        <>
+        <header>
+            <h2>Conheça nosso programa de pontos</h2>
+            <h3><b>Beerwards</b></h3>
+        </header>   
         <Carousel indicators={false}>
             <Carousel.Item onClick={redirectToRewards} className="carousel-item">
                 <img
                     className="d-block w-100"
-                    src={imageUrl}
+                    src={cauim}
                     alt="First slide"
                 />
-                <Carousel.Caption className="carousel-caption">
-                    <p>Conheça nosso programa de pontos</p>
-                    <p><b>Beerwards</b></p>
-                </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item onClick={redirectToRewards} className="carousel-item">
                 <img
                     className="d-block w-100"
-                    src={imageUrl}
+                    src={original}
                     alt="First slide"
                 />
-                <Carousel.Caption className="carousel-caption">
-                    <p>Conheça nosso programa de pontos</p>
-                    <p><b>Beerwards</b></p>
-                </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item onClick={redirectToRewards} className="carousel-item">
                 <img
                     className="d-block w-100"
-                    src={imageUrl}
+                    src={hallo}
                     alt="First slide"
                 />
-                <Carousel.Caption className="carousel-caption">
-                    <p>Conheça nosso programa de pontos</p>
-                    <p><b>Beerwards</b></p>
-                </Carousel.Caption>
             </Carousel.Item>
         </Carousel >
+    </>
     )
+    
 };
 
 export default CarouselComponent; 
