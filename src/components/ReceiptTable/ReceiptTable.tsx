@@ -15,11 +15,24 @@ interface ReceiptTableProps {
     isClientDashboard?: boolean;
 }
 
+interface paginationProps {
+    page: number,
+    pageSize: number
+}
+
 const ReceiptTableTable = ({ tableSize = 10, isClientDashboard }: ReceiptTableProps) => {
+
+    const paginationInitialState = {
+        page: 0,
+        pageSize: 10,
+        tipoOperacao: 'DEPOSITO'
+    }
 
     const [operations, setOperations] = useState<IExtrato[]>([]);
     const [emptyTable, setEmptyTable] = useState(true);
     const [loading, setLoading] = useState(false);
+    const [pagination, setPagination] = useState<paginationProps>(paginationInitialState)
+    
     const formatDate = new FormatDate()
 
     const history = useHistory();
@@ -37,6 +50,17 @@ const ReceiptTableTable = ({ tableSize = 10, isClientDashboard }: ReceiptTablePr
             }
         }).finally(() => setLoading(false))
     }, [tableSize]);
+
+    const handleProductPagination = () => {
+        let tempPagination = {
+            ...pagination,
+            pageSize: (pagination.pageSize + 10)
+        }
+        apiService.extrato((tempPagination)).then((operationsData: IExtrato[]) => {
+            setOperations(operationsData)
+        }).finally(() => setLoading(false))
+        setPagination(tempPagination)
+    }
 
     const renderTable = (() => {
         return (
@@ -58,7 +82,7 @@ const ReceiptTableTable = ({ tableSize = 10, isClientDashboard }: ReceiptTablePr
                         )}
                     </tbody>
                 </Table>
-                { isClientDashboard ? <Button className='regular-outline-button' variant="outline-warning" onClick={() => handleRedirect('receipt')}>Ver todos os lançamentos</Button> : null}
+                { isClientDashboard ? <Button className='regular-outline-button' variant="outline-warning" onClick={() => handleRedirect('receipt')}>Ver todos os lançamentos</Button> : <Button className='regular-outline-button show-more-button' variant="outline-warning" onClick={handleProductPagination}>Ver mais</Button> }
             </>
         )
     })

@@ -55,8 +55,6 @@ export default function Rewards() {
         setPagination(tempPagination)
     }
 
-
-
     return (
         <>
             <NavbarComponent />
