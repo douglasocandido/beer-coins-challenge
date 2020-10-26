@@ -123,3 +123,8 @@ p {
   height: 70px !important;
   margin-top: 50px;
 }
+
+.dropdown-item:active {
+  background-color: #FF8832 !important;
+  border-color: #FF8832 !important;
+}
