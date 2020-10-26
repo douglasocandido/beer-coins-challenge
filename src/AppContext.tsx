@@ -4,8 +4,9 @@ import { ContextDevTool } from 'react-context-devtool';
 
 const initialState = {
   user: {
-    Nome:'',
-    Perfil: ''
+    Nome: '',
+    Perfil: '',
+    Saldo: 0
   }
 }
 
@@ -17,16 +18,32 @@ export interface IAppState {
 }
 
 export const SET_USER = 'SET_USER'
+export const SET_SALDO = 'SET_SALDO'
+export const UPDATE_SALDO = 'UPDATE_SALDO'
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
     case SET_USER:
       return { user: action.user }
-    }
+    case SET_SALDO:
+      return {
+        user: {
+          ...state.user,
+          Saldo: action.saldo
+        }
+      }
+    case UPDATE_SALDO:
+      return {
+        user: {
+          ...state.user,
+          Saldo: (state.user.Saldo - action.productPrice)
+        }
+      }
+  }
   return state
 }
 
-export const AppContextProvider = ({ children }: { children: any}) => {
+export const AppContextProvider = ({ children }: { children: any }) => {
   const [state, dispatch] = useReducer(reducer, 0)
   return (
     <AppDispatchContext.Provider value={[dispatch]}>

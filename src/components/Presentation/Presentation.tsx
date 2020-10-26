@@ -11,7 +11,7 @@ import './style.scss'
 import ModalTransfer from '../ModalTransfer/'
 import HistoryRewards from '../../pages/Rewards/components/HistoryRewards'
 import { apiService } from "../../App";
-import { useAppState } from '../../AppContext';
+import { useAppState, useAppDispatch } from '../../AppContext';
 
 interface PresentationProps {
   title: string;
@@ -30,11 +30,15 @@ const Presentation = ({ title, backToHome, isRewardsScreen, image }: Presentatio
 
   const [saldo, setSaldo] = useState(0)
   const [loading, setLoading] = useState(false)
-
+  const [dispatch] = useAppDispatch()
   useEffect(() => {
     setLoading(true);
     apiService.getSaldo().then(({ saldo }) => {
       setSaldo(saldo);
+      dispatch({
+        type: 'SET_SALDO',
+        saldo
+      })
     }).finally(() => setLoading(false))
   }, [])
 

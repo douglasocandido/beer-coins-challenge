@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form, Modal } from "react-bootstrap"
 import { ModalFooter } from "../../../components/"
 import { toast } from 'react-toastify';
+import { useAppDispatch } from '../../../AppContext';
 
 import { TokenService } from '../../../services/TokenService';
 import AxiosHandler from '../../../services/AxiosHandler';
@@ -28,10 +29,15 @@ interface RegisterProps {
 
 
 export default function ConfirmExchange({ handleShow, handleClose, show, productPrice, productId, productTitle }: RegisterProps) {
-  const handleReward = (productId: number) => {
+  const [dispatch] = useAppDispatch()
+  const handleReward = (productId: number, productPrice: number) => {
     apiServiceProducts.rewardProduct(productId).then((response: any) => {
       toast.success('Troca realizada com sucesso!')
       handleCancel()
+      dispatch({
+        type: 'UPDATE_SALDO',
+        productPrice
+      })
     }).catch((error: any) => {
       console.error('transferencia', error)
       toast.error('Algo está errado, desculpe!');
@@ -54,7 +60,7 @@ export default function ConfirmExchange({ handleShow, handleClose, show, product
           </Modal.Body>
           <div className="exchange-modal-footer">
             <Button className="outline-button-cancel" variant="link" onClick={handleCancel}>Cancelar</Button>
-            <Button className="regular-button" variant="warning" onClick={() => handleReward(productId)}>Confirmar</Button>
+            <Button className="regular-button" variant="warning" onClick={() => handleReward(productId, productPrice)}>Confirmar</Button>
           </div>
           <ModalFooter />
         </Form>

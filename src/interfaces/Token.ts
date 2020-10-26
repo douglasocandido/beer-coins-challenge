@@ -7,6 +7,7 @@ export interface ITokenService {
 export interface ITokenData {
   Nome: string,
   Perfil: string
+  Saldo: number,
   exp?: number,
   iat?: number,
   sub?: number,
