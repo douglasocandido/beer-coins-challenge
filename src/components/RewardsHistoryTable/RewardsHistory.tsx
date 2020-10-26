@@ -14,14 +14,14 @@ const RewardsHistoryTable = ({ tableSize = 10 }: ReceiptTableProps) => {
 
     const [operations, setOperations] = useState<IExtrato[]>([]);
     const [loading, setLoading] = useState(false);
-    const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: 'DEPOSITO' }
 
     useEffect(() => {
         setLoading(true);
+        const filters: IExtratoForm = { page: 0, pageSize: tableSize, tipoOperacao: 'DEPOSITO' };
         apiService.extrato(filters).then((operationsData: IExtrato[]) => {
             setOperations(operationsData)
         }).finally(() => setLoading(false))
-    }, [])
+    }, [tableSize]);
 
     const renderTable = (() => {
         return (
@@ -34,8 +34,8 @@ const RewardsHistoryTable = ({ tableSize = 10 }: ReceiptTableProps) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {operations.map((receipt: IExtrato) => (
-                            <tr>
+                        {operations.map((receipt: IExtrato, index: number) => (
+                            <tr key={index}>
                                 <td>{receipt.dataHora}</td>
                                 <td>B$ {receipt.valor}</td>
                             </tr>
