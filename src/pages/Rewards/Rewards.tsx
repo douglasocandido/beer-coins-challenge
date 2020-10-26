@@ -61,12 +61,12 @@ export default function Rewards() {
         <>
             <NavbarComponent />
             <Presentation isRewardsScreen={true} title="Beerwards" image={contentImage} />
-            <Row className='client-container'>
+            <Row className='client-container justify-content-center'>
                 {loading ? <Spinner className="spinner-tables" animation='border' variant="secondary" size="sm" />
                     :
                     products.map((product: IProduct) => {
                         return (
-                            <Col>
+                            <Col lg={4} xs={12} md={6} className='card-column'>
                                 <Card title={product.name}
                                     productId={product.id}
                                     price={product.price}
@@ -78,12 +78,10 @@ export default function Rewards() {
                     })
                 }
             </Row>
-            <Row>
-                <Col>
-                    {pagination.pageSize <= 6 &&
-                        <Button className='regular-outline-button' variant="outline-warning" onClick={handleProductPagination}>Ver mais</Button>
-                    }
-                </Col>
+            <Row className='justify-content-center'>
+                {pagination.pageSize <= 6 &&
+                    <Button className='regular-outline-button show-more-button' variant="outline-warning" onClick={handleProductPagination}>Ver mais</Button>
+                }
             </Row>
 
         </>

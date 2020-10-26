@@ -9,7 +9,6 @@ interface ICard {
     price: number,
     imageUrl: string,
     productId: number
-
 }
 
 const CardComponent: React.FC<ICard> = ({ title, productId, description, price, imageUrl }) => {
@@ -20,7 +19,7 @@ const CardComponent: React.FC<ICard> = ({ title, productId, description, price, 
 
     return (
         <>
-            <Card style={{ width: '300px', height: '100%', maxHeight: '600px' }}>
+            <Card className="card-container">
                 <Card.Img variant="top" className="card-image" src={imageUrl} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
