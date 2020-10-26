@@ -42,10 +42,9 @@ const AdminTable = ({ tableTitle }: AdminTableProps) => {
           </div> :
           <>
             <h2>{tableTitle}</h2>
-            <Table responsive="sm" className='text-align-center'>
+            <Table className='text-align-center'>
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Nome</th>
                   <th>E-mail</th>
                   <th>CNPJ</th>
@@ -56,7 +55,6 @@ const AdminTable = ({ tableTitle }: AdminTableProps) => {
               <tbody>
                 {adminData.map((conta: IConta, index: number) => (
                   <tr key={conta.hash}>
-                    <td>{index + 1}</td>
                     <td>{conta.nome}</td>
                     <td>{conta.email}</td>
                     <td>{conta.cnpj}</td>
