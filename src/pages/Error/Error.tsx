@@ -11,7 +11,7 @@ export default function Error() {
     <div className="justify-content-center error-container">
       <h1>Não foi possível encontrar essa página.</h1>
       <Image className='error-image' src={contentImage} />
-      <p><Button className='error-back-button' variant="warning" href="/">Voltar</Button></p>
+      <p><Button className='regular-button error-container' variant="warning" href="/">Voltar</Button></p>
     </div>
   )
 }
