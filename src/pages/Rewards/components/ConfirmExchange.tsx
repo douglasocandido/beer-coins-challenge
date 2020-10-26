@@ -38,6 +38,7 @@ export default function ConfirmExchange({ handleShow, handleClose, show, product
         type: 'UPDATE_SALDO',
         productPrice
       })
+      setTimeout(function(){ window.location.reload() }, 1000);
     }).catch((error: any) => {
       console.error('transferencia', error)
       toast.error('Algo está errado, desculpe!');
