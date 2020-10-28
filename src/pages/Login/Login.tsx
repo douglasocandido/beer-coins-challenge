@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import videoSample from "../../assets/videos/tap-beer.mp4";
 import { Button, Form, Spinner } from "react-bootstrap"
@@ -9,8 +8,7 @@ import imageContent from "../../assets/images/beer-image.jpg"
 
 import "./style.scss"
 
-import { apiService } from '../../App';
-import { useAppDispatch } from '../../AppContext';
+import { apiService } from '../../services';
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,8 +18,6 @@ export default function Login() {
   const emailRef = useRef<HTMLInputElement | null>(null)
   const passwordRef = useRef<HTMLInputElement | null>(null)
 
-  const history = useHistory();
-  const [dispatch] = useAppDispatch();
   const notify = (type: string) => {
     let message;
     switch (type) {
@@ -42,25 +38,13 @@ export default function Login() {
       handleLogin()
       setIsLoading(true)
     }
-
-
   }
 
   function handleLogin() {
     apiService.login(emailRef?.current?.value!, passwordRef?.current?.value!)
-      .then((user) => {
-        dispatch({
-          type: 'SET_USER',
-          user
-        })
-        notify('success');
-        history.push('/')
-      })
-      .catch(() => {
-        notify('failed');
-        setIsLoading(false)
-
-      })
+      .then(() => window.location.reload())
+      .catch(() => notify('failed'))
+      .finally(() => setIsLoading(false))
   }
 
   return (

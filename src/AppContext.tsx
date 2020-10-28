@@ -6,7 +6,8 @@ const initialState = {
   user: {
     Nome: '',
     Perfil: '',
-    Saldo: 0
+    Saldo: 0,
+    token: ''
   }
 }
 
