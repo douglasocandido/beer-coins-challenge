@@ -6,7 +6,7 @@ import {
 } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { IExtrato, IExtratoForm } from '../../interfaces/Extrato';
-import { apiService } from '../../App';
+import { apiService } from '../../services';
 import FormatDate from '../../services/FormatDate';
 import EmptyTable from '../EmptyTable'
 
@@ -32,7 +32,7 @@ const ReceiptTableTable = ({ tableSize = 10, isClientDashboard }: ReceiptTablePr
     const [emptyTable, setEmptyTable] = useState(true);
     const [loading, setLoading] = useState(false);
     const [pagination, setPagination] = useState<paginationProps>(paginationInitialState)
-    
+
     const formatDate = new FormatDate()
 
     const history = useHistory();

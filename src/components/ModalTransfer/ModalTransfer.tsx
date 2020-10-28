@@ -3,7 +3,7 @@ import { Button, Form, Image, Modal, Col, FormGroup } from "react-bootstrap"
 import { toast } from 'react-toastify';
 import { ModalFooter } from '../index'
 import transfer from "../../assets/images/transfer.svg"
-import { apiService } from '../../App';
+import { apiService } from '../../services';
 import { useAppState } from '../../AppContext';
 import './style.scss'
 
