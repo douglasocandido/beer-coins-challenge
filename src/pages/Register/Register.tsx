@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { Button, Form, Modal, Spinner } from "react-bootstrap"
 
 import { ModalFooter } from "../../components/"
-import { apiService } from '../../App';
+import { apiService } from '../../services';
 
 import './style.scss'
 

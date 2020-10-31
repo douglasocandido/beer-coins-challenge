@@ -8,10 +8,8 @@ export interface ITokenData {
   Nome: string,
   Perfil: string
   Saldo: number,
-  exp?: number,
-  iat?: number,
-  sub?: number,
-  Hash?: string
+  Hash?: string,
+  token: string
 }
 
 export interface IToken {

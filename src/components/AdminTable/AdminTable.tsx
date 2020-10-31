@@ -4,7 +4,7 @@ import { Spinner, Table } from "react-bootstrap"
 
 import { IConta } from '../../interfaces/Conta'
 import { Popover } from '../index'
-import { apiService } from '../../App';
+import { apiService } from '../../services';
 
 interface AdminTableProps {
   tableTitle: string;

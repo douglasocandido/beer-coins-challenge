@@ -3,7 +3,7 @@ import { Button, Form, Row, Modal, Col, FormGroup } from "react-bootstrap"
 import { toast } from 'react-toastify';
 import ModalFooter from '../ModalFooter/ModalFooter'
 import './style.scss'
-import { apiService } from '../../App';
+import { apiService } from '../../services';
 
 interface ModalTransferProps {
     handleClose: () => void

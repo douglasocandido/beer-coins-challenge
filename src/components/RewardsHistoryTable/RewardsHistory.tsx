@@ -4,7 +4,7 @@ import {
     Spinner
 } from 'react-bootstrap';
 import { IExtrato, IExtratoForm } from '../../interfaces/Extrato';
-import { apiService } from '../../App';
+import { apiService } from '../../services';
 import FormatDate from '../../services/FormatDate';
 
 interface ReceiptTableProps {
@@ -49,7 +49,7 @@ const RewardsHistoryTable = ({ tableSize = 10 }: ReceiptTableProps) => {
                     </tbody>
                 </Table>
             </>
-        )   
+        )
     })
 
     return (

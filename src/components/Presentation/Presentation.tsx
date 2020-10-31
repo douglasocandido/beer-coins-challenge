@@ -10,7 +10,7 @@ import {
 import './style.scss'
 import ModalTransfer from '../ModalTransfer/'
 import HistoryRewards from '../../pages/Rewards/components/HistoryRewards'
-import { apiService } from "../../App";
+import { apiService } from "../../services";
 import { useAppState, useAppDispatch } from '../../AppContext';
 
 interface PresentationProps {
